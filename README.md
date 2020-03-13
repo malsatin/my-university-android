@@ -21,13 +21,16 @@ This is an attempt to create usable android client for my.university.innopolis.r
 ## Tools
 * IDE - Android Studio
 * Task management - [Trello](https://trello.com/b/pb7LdlRR/md-university-project)
+* VCS - git on GitHub
 * CI/CD - GitHub Actions
+* Communications - telegram and weekly meetings
 
 ## Process
 * Methodology - Kanban
 * Prioritization - MoSCoW
 * Task format - Feature/Requirement description
 * Dev. process - simplified GitHub Flow
+* Sprint size - 2 weeks
 
 ## Specific traits
 * No staging server
