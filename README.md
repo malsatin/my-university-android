@@ -37,4 +37,5 @@ This is an attempt to create usable android client for my.university.innopolis.r
 * Result oriented development
 * No experience in Android
 
-<iframe width="476" height="302" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSHDLY6gFINy8nBgLJb81mLj9IkczivmAyML4zdw_dxAN6vNRxIOuSpkBkKgUA4ixQG_P8MFCwEXwbY/pubchart?oid=815173095&amp;format=image"></iframe>
+## Evaluation
+![Sprint Progress](https://docs.google.com/spreadsheets/d/e/2PACX-1vSHDLY6gFINy8nBgLJb81mLj9IkczivmAyML4zdw_dxAN6vNRxIOuSpkBkKgUA4ixQG_P8MFCwEXwbY/pubchart?oid=815173095&amp;format=image)
