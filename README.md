@@ -21,13 +21,13 @@ This is an attempt to create usable android client for my.university.innopolis.r
 ## Tools
 * IDE - Android Studio
 * Task management - [Trello](https://trello.com/b/pb7LdlRR/md-university-project)
-* VCS - git on GitHub
+* VCS - git hosted on GitHub
 * CI/CD - GitHub Actions
-* Communications - telegram and weekly meetings
+* Communications - telegram and periodical meetings
 
 ## Process
 * Methodology - Kanban
-* Prioritization - MoSCoW
+* Prioritization - [trello system for kanban](https://blog.trello.com/kanban-data-nave)
 * Task format - Feature/Requirement description
 * Dev. process - simplified GitHub Flow
 * Sprint size - 2 weeks
@@ -36,3 +36,4 @@ This is an attempt to create usable android client for my.university.innopolis.r
 * No staging server
 * Result oriented development
 * No experience in Android
+* Used Kotlin-Android [template](https://github.com/cortinico/kotlin-android-template)
