@@ -37,6 +37,10 @@ This is an attempt to create usable android client for my.university.innopolis.r
 * All pull-requests should be made into the **develop** (unstable branch)
 * When **develop** is stable and has enough features for a release we need to create a pull-request **develop** -> **master**
 
+## Naming policy
+* Branches - by the code of the task and short description, e.g. *MD-10-sso-auth*
+* Commits - by code of the branch and message with the work done, e.g. *MD-10 | added basic auth procedure*
+
 ## Specific traits
 * No staging server
 * Result oriented development
