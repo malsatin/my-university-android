@@ -37,3 +37,6 @@ This is an attempt to create usable android client for my.university.innopolis.r
 * Result oriented development
 * No experience in Android
 * Used Kotlin-Android [template](https://github.com/cortinico/kotlin-android-template)
+
+## Evaluation
+![Sprint Progress](https://docs.google.com/spreadsheets/d/e/2PACX-1vSHDLY6gFINy8nBgLJb81mLj9IkczivmAyML4zdw_dxAN6vNRxIOuSpkBkKgUA4ixQG_P8MFCwEXwbY/pubchart?oid=815173095&amp;format=image)
