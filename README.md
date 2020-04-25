@@ -26,7 +26,7 @@ This is an attempt to create usable android client for my.university.innopolis.r
 * Communications - telegram and periodical meetings
 
 ## Process
-* Methodology - Kanban
+* Methodology - [Kanban](https://trello.com/templates/engineering/kanban-template-LGHXvZNL)
 * Prioritization - [trello system for kanban](https://blog.trello.com/kanban-data-nave)
 * Task format - Feature/Requirement description
 * Dev. process - simplified GitHub Flow
