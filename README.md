@@ -32,6 +32,11 @@ This is an attempt to create usable android client for my.university.innopolis.r
 * Dev. process - simplified GitHub Flow
 * Sprint size - 2 weeks
 
+## Branching policy
+* All branches should be created from the **master** (stable branch)
+* All pull-requests should be made into the **develop** (unstable branch)
+* When **develop** is stable and has enough features for a release we need to create a pull-request **develop** -> **master**
+
 ## Specific traits
 * No staging server
 * Result oriented development
