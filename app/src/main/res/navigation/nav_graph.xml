@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@+id/nav_profile">
+
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.example.myuniversityclient.ui.ProfileFragment"
+        android:label="@string/menu_profile"
+        tools:layout="@layout/fragment_profile">
+
+        <action
+            android:id="@+id/action_ProfileFragment_to_ProfileSecondFragment"
+            app:destination="@id/nav_profile_second" />
+    </fragment>
+
+    <!--    A hack used in official navigation drawer example-->
+    <fragment
+        android:id="@+id/nav_profile_second"
+        android:name="com.example.myuniversityclient.ui.ProfileSecondFragment"
+        android:label="@string/menu_profile_second"
+        tools:layout="@layout/fragment_profile_second">
+        <action
+            android:id="@+id/action_ProfileSecondFragment_to_ProfileFragment"
+            app:destination="@id/nav_profile" />
+
+        <argument
+            android:name="myArg"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_catering"
+        android:name="com.example.myuniversityclient.ui.CateringFragment"
+        android:label="@string/menu_catering"
+        tools:layout="@layout/fragment_catering" />
+
+    <fragment
+        android:id="@+id/nav_reference"
+        android:name="com.example.myuniversityclient.ui.ReferenceRequestsFragment"
+        android:label="@string/menu_reference"
+        tools:layout="@layout/fragment_reference_requests" />
+
+    <fragment
+        android:id="@+id/nav_electives"
+        android:name="com.example.myuniversityclient.ui.ElectiveCoursesFragment"
+        android:label="@string/menu_electives"
+        tools:layout="@layout/fragment_elective_courses" />
+
+    <fragment
+        android:id="@+id/nav_internships"
+        android:name="com.example.myuniversityclient.ui.InternshipsFragment"
+        android:label="@string/menu_internships"
+        tools:layout="@layout/fragment_internships" />
+</navigation>

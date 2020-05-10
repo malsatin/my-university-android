@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_menu_profile_24px"
+            android:title="@string/menu_profile" />
+        <item
+            android:id="@+id/nav_catering"
+            android:icon="@drawable/ic_menu_catering_24px"
+            android:title="@string/menu_catering" />
+        <item
+            android:id="@+id/nav_reference"
+            android:icon="@drawable/ic_menu_reference_24px"
+            android:title="@string/menu_reference" />
+        <item
+            android:id="@+id/nav_electives"
+            android:icon="@drawable/ic_menu_elective_24px"
+            android:title="@string/menu_electives" />
+        <item
+            android:id="@+id/nav_internships"
+            android:icon="@drawable/ic_menu_internships_24px"
+            android:title="@string/menu_internships" />
+    </group>
+</menu>
