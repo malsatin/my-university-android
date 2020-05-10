@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">MyUniversityClient</string>
+    <string name="home_fragment_label">Profile</string>
+
+    <!--    Menu Items-->
+    <string name="menu_profile">Profile</string>
+    <string name="menu_profile_second">Profile Second</string>
+    <string name="menu_catering">Catering</string>
+    <string name="menu_reference">Reference requests</string>
+    <string name="menu_internships">Internships</string>
+    <string name="menu_electives">Elective courses</string>
+    <string name="menu_it_services">IT services</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
