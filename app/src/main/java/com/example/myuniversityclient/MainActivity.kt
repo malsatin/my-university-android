@@ -91,6 +91,7 @@ class MainActivity : AppCompatActivity() {
             // received error
             header.studentName.text = resources.getString(R.string.user_info_error_title)
             header.studentEmail.text = it.localizedMessage ?: ""
+            return // котлин мразь, без этого не компилит
         })
     }
 
