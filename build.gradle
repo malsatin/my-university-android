@@ -7,6 +7,7 @@ buildscript {
         dagger_version = '2.27'
         material_version = '1.1.0'
         nav_version = '2.3.0-alpha06'
+        glide_version = '4.11.0'
     }
 
     repositories {
