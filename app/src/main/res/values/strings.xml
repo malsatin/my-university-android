@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">MyUniversityClient</string>
-    <string name="home_fragment_label">Profile</string>
+    <string name="app_name">MyUniversity</string>
 
     <!--    Menu Items-->
     <string name="menu_profile">Profile</string>
@@ -10,6 +9,9 @@
     <string name="menu_internships">Internships</string>
     <string name="menu_electives">Elective courses</string>
     <string name="menu_it_services">IT services</string>
+
+    <!--    Navigation drawer and main activity-->
+    <string name="user_info_error_title">An error occurred while loading user info</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
