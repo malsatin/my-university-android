@@ -9,7 +9,15 @@ import com.example.myuniversityclient.R
 import com.example.myuniversityclient.data.models.ITService
 import kotlinx.android.synthetic.main.it_service_list_item.view.*
 
+
+interface ServiceClickListener {
+    fun onClick(service: ITService)
+}
+
 class ITServicesAdapter(private val itemList: List<ITService>) : RecyclerView.Adapter<ITServicesAdapter.ViewHolder>() {
+
+    var listener: ServiceClickListener? = null
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -36,6 +44,12 @@ class ITServicesAdapter(private val itemList: List<ITService>) : RecyclerView.Ad
 
             itemView.list_title.text = service.name
             itemView.list_description.text = service.description
+
+            itemView.setOnClickListener {
+                listener?.onClick(service)
+            }
         }
     }
 }
+
+
