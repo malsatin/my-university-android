@@ -8,7 +8,7 @@ import com.example.myuniversityclient.data.models.ITServicesList
  * Temporary backend substitution.
  */
 class ITLinksServiceMock: ITLinksService {
-    override fun getITServices(onResult: (Result<ITServicesList?>) -> Unit) {
+    override fun getITServices(onResult: (Result<ITServicesList>) -> Unit) {
         val mockList = ITServicesList(
             listOf(
                 ITService ("eDisk", "Shared file storage (SMB, HTTPS, SFTP)", "https://edisk.university.innopolis.ru"),
