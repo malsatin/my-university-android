@@ -21,29 +21,24 @@ import com.example.myuniversityclient.ui.dummy.DummyContent.DummyItem
  */
 class ElectivesListFragment : Fragment() {
 
-    // TODO: Customize parameters
-    private var columnCount = 1
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_electives_list, container, false)
 
-        // Set the adapter
-        if (view is RecyclerView) {
-            with(view) {
-                layoutManager = when {
-                    columnCount <= 1 -> LinearLayoutManager(context)
-                    else -> GridLayoutManager(context, columnCount)
-                }
-                adapter = ElectivesRecyclerViewAdapter(DummyContent.ITEMS)
-            }
-        }
+        setupRecyclerView(view)
+
         return view
     }
 
-    fun setupRecyclerView() {
-
+    private fun setupRecyclerView(view: View) {
+        // Set the adapter
+        if (view is RecyclerView) {
+            with(view) {
+                layoutManager = LinearLayoutManager(context)
+                adapter = ElectivesRecyclerViewAdapter(DummyContent.ITEMS)
+            }
+        }
     }
 }
