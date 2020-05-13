@@ -28,4 +28,6 @@
     <!--    IT Services-->
     <string name="success_itservices_update">Updated IT services list</string>
     <string name="error_itservices_update">Failed to load IT services list</string>
+    <string name="textview1">TextView</string>
+    <string name="textview2">TextView</string>
 </resources>

@@ -8,7 +8,7 @@ import com.example.myuniversityclient.data.repository.main.MainRepository
 import com.example.myuniversityclient.data.repository.main.ProfileRepository
 import javax.inject.Inject
 
-class ProfileViewModel@Inject constructor(
+class ProfileViewModel @Inject constructor(
     private val repository: ProfileRepository
 ): ViewModel(){
 
