@@ -13,6 +13,9 @@
     <!--    Navigation drawer and main activity-->
     <string name="user_info_error_title">An error occurred while loading user info</string>
 
+    <!--    Elective courses fragment-->
+    <string name="title_subtitle_item_subtitle">%1$s · Subscribed on %2$s</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

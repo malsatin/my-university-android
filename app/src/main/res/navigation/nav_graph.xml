@@ -45,9 +45,9 @@
 
     <fragment
         android:id="@+id/nav_electives"
-        android:name="com.example.myuniversityclient.ui.ElectiveCoursesFragment"
+        android:name="com.example.myuniversityclient.ui.ElectivesListFragment"
         android:label="@string/menu_electives"
-        tools:layout="@layout/fragment_elective_courses" />
+        tools:layout="@layout/fragment_electives_list" />
 
     <fragment
         android:id="@+id/nav_internships"
