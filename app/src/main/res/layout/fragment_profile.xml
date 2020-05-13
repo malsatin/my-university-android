@@ -6,9 +6,8 @@
     tools:context=".ui.ProfileFragment"
     android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_layout"
+        android:id="@+id/profile_tab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

@@ -9,9 +9,9 @@ class ProfileServiceMock: ProfileService {
         val mockContacts = Contacts(
             "Russia, Rep. Bashkortostan, Ufa",
             "Russia, Rep. Tatarstan, Innopolis",
-            listOf("mock@innopolis.ru"),
+            listOf("mock@innopolis.ru", "mock1@innopolis.ru"),
             listOf("@Mock"),
-            listOf("89999999999")
+            listOf("89999999999", "79999999999","79999199999","79999949999","79959999999","79999899999")
         )
         onResult(Result.success(mockContacts))
     }
