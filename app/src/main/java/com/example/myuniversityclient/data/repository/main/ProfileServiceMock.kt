@@ -9,38 +9,75 @@ class ProfileServiceMock: ProfileService {
         val mockContacts = Contacts(
             "Russia, Rep. Bashkortostan, Ufa",
             "Russia, Rep. Tatarstan, Innopolis",
-            listOf("mock@innopolis.ru", "mock1@innopolis.ru"),
+            listOf("b.khabirov@innopolis.ru", "bulAtKhabiroff@gmail.ru"),
             listOf("@Mock"),
-            listOf("89999999999", "79999999999","79999199999","79999949999","79959999999","79999899999")
+            listOf("89991543454", "88434321343","79999193443")
         )
         onResult(Result.success(mockContacts))
     }
 
     override fun getEducationHistory(onResult: (Result<EducationHistory?>) -> Unit) {
-        val mockEducationYear = EducationHistory.EducationYear(
+        val mockEducationYear1 = EducationHistory.EducationYear(
             Date(),
             "CS",
             "1",
-            "BS20-01",
+            "BS16-01",
+            "2016-2017",
+            "IsStudent"
+
+        )
+        val mockEducationYear2 = EducationHistory.EducationYear(
+            Date(),
+            "CS",
+            "2",
+            "BS16-01",
+            "2018-2019",
+            "IsStudent"
+
+        )
+        val mockEducationYear3 = EducationHistory.EducationYear(
+            Date(),
+            "CS",
+            "3",
+            "BS16-01",
+            "2019-2020",
+            "IsStudent"
+
+        )
+        val mockEducationYear4 = EducationHistory.EducationYear(
+            Date(),
+            "CS",
+            "4",
+            "BS16-01",
             "2020-2021",
             "IsStudent"
 
         )
         val mockEducationHistory = EducationHistory(
-            listOf(mockEducationYear)
+            listOf(mockEducationYear1, mockEducationYear2, mockEducationYear3, mockEducationYear4)
         )
         onResult(Result.success(mockEducationHistory))
 
     }
 
     override fun getGradeBook(onResult: (Result<GradeBook?>) -> Unit) {
-        val mockMark = GradeBook.Mark(
+        val mockMark1 = GradeBook.Mark(
             "Android",
             "A. Simonenko",
             "B"
         )
+        val mockMark2 = GradeBook.Mark(
+            "SQR",
+            "A. Sadovukh",
+            "A"
+        )
+        val mockMark3 = GradeBook.Mark(
+            "OS",
+            "G.Succi",
+            "A"
+        )
         val mockGradeBook = GradeBook(
-            listOf(mockMark)
+            listOf(mockMark1, mockMark2)
         )
         onResult(Result.success(mockGradeBook))
 
@@ -48,8 +85,8 @@ class ProfileServiceMock: ProfileService {
 
     override fun getPassportData(onResult: (Result<PassportData?>) -> Unit) {
         val mockPassportInstance = Passport(
-            "8080",
-            "890890",
+            "8081",
+            "850890",
             Date(),
             "020-033"
         )
@@ -62,13 +99,13 @@ class ProfileServiceMock: ProfileService {
 
     override fun getPersonalInfo(onResult: (Result<PersonalInfo?>) -> Unit) {
         val mockPersonalInfo = PersonalInfo(
-                "Ivan Ivanovich Ivanov",
+                "Bulat Khabirov",
             Date(),
             "Male",
-            "USA",
+            "Russia",
             "123463464124",
-            "12323434564323",
-            "EA1234321"
+            "020623434564323",
+            "EA6234321"
                 )
         onResult(Result.success(mockPersonalInfo))
 
