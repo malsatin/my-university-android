@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myuniversityclient.MainApplication
@@ -15,6 +17,7 @@ import com.example.myuniversityclient.R
 import com.example.myuniversityclient.data.models.CateringHistoryItem
 import com.example.myuniversityclient.data.models.CateringHistoryItemsList
 import com.example.myuniversityclient.domain.CateringFragmentViewModel
+import com.example.myuniversityclient.domain.LoginViewModel
 import kotlinx.android.synthetic.main.fragment_catering.view.*
 import javax.inject.Inject
 
@@ -24,7 +27,8 @@ import javax.inject.Inject
  */
 class CateringFragment : Fragment(), CateringHistoryAdapter.ServiceClickListener {
 
-    @Inject lateinit var viewModel: CateringFragmentViewModel
+    @Inject
+    lateinit var viewModel: CateringFragmentViewModel
 
     private var history = ArrayList<CateringHistoryItem>()
     lateinit var historyAdapter: CateringHistoryAdapter
@@ -67,6 +71,22 @@ class CateringFragment : Fragment(), CateringHistoryAdapter.ServiceClickListener
     }
 
     private fun onHistoryDidUpdate(result: Result<CateringHistoryItemsList>) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val navController = findNavController()
+        var loginViewModel: LoginViewModel = activity?.run {
+            ViewModelProviders.of(this).get(LoginViewModel::class.java)
+        }!!
+        loginViewModel.authenticationState.observe(
+            viewLifecycleOwner,
+            Observer { authenticationState ->
+                when (authenticationState) {
+                    LoginViewModel.AuthenticationState.UNAUTHENTICATED -> navController.navigate(R.id.nav_login)
+                }
+            })
+    }
+
+    private fun onHistoryDidUpdate(result: Result<CateringHistoryItemsList?>) {
         result.fold({
             history.clear()
             history.addAll(it.history)

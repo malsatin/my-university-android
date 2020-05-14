@@ -54,4 +54,10 @@
         android:name="com.example.myuniversityclient.ui.ITServicesFragment"
         android:label="@string/menu_it_services"
         tools:layout="@layout/fragment_it_services" />
+
+    <fragment
+        android:id="@+id/nav_login"
+        android:name="com.example.myuniversityclient.ui.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login" />
 </navigation>
