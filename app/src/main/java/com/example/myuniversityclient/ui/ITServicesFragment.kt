@@ -27,7 +27,7 @@ import javax.inject.Inject
 /**
  * A fragment displaying a list of IT services available to the student.
  */
-class ITServicesFragment : Fragment(),
+class ITServicesFragment : AuthenticatedFragment(),
     ServiceClickListener {
 
     @Inject lateinit var viewModel: ITServicesFragmentViewModel
@@ -72,22 +72,7 @@ class ITServicesFragment : Fragment(),
         return view
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val navController = findNavController()
-        var loginViewModel: LoginViewModel = activity?.run {
-            ViewModelProviders.of(this).get(LoginViewModel::class.java)
-        }!!
-        loginViewModel.authenticationState.observe(
-            viewLifecycleOwner,
-            Observer { authenticationState ->
-                when (authenticationState) {
-                    LoginViewModel.AuthenticationState.UNAUTHENTICATED -> navController.navigate(R.id.nav_login)
-                }
-            })
-    }
-
-    private fun onITServicesDidUpdate(result: Result<ITServicesList>) {
+    private fun onITServicesDidUpdate(result: Result<ITServicesList?>) {
         result.fold({
             services.clear()
             services.addAll(it.services)

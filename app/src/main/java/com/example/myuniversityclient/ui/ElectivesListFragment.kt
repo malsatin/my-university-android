@@ -6,17 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myuniversityclient.MainApplication
 import com.example.myuniversityclient.R
 import com.example.myuniversityclient.databinding.FragmentElectivesListBinding
 import com.example.myuniversityclient.domain.ElectivesListFragmentViewModel
-import com.example.myuniversityclient.domain.LoginViewModel
 import javax.inject.Inject
 
 /**
@@ -24,7 +20,7 @@ import javax.inject.Inject
  * Activities containing this fragment MUST implement the
  * [ElectivesListFragment.OnListFragmentInteractionListener] interface.
  */
-class ElectivesListFragment : Fragment() {
+class ElectivesListFragment : AuthenticatedFragment() {
 
     private lateinit var binding: FragmentElectivesListBinding
     private val adapter = ElectivesRecyclerViewAdapter()
@@ -46,21 +42,6 @@ class ElectivesListFragment : Fragment() {
         subscribeForViewModel()
 
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val navController = findNavController()
-        var loginViewModel: LoginViewModel = activity?.run {
-            ViewModelProviders.of(this).get(LoginViewModel::class.java)
-        }!!
-        loginViewModel.authenticationState.observe(
-            viewLifecycleOwner,
-            Observer { authenticationState ->
-                when (authenticationState) {
-                    LoginViewModel.AuthenticationState.UNAUTHENTICATED -> navController.navigate(R.id.nav_login)
-                }
-            })
     }
 
     private fun setupMainViews() {

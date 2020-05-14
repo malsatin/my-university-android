@@ -25,7 +25,7 @@ import javax.inject.Inject
 /**
  * A fragment displaying a catering history
  */
-class CateringFragment : Fragment(), CateringHistoryAdapter.ServiceClickListener {
+class CateringFragment : AuthenticatedFragment(), CateringHistoryAdapter.ServiceClickListener {
 
     @Inject
     lateinit var viewModel: CateringFragmentViewModel
@@ -68,22 +68,6 @@ class CateringFragment : Fragment(), CateringHistoryAdapter.ServiceClickListener
         }
 
         return view
-    }
-
-    private fun onHistoryDidUpdate(result: Result<CateringHistoryItemsList>) {
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val navController = findNavController()
-        var loginViewModel: LoginViewModel = activity?.run {
-            ViewModelProviders.of(this).get(LoginViewModel::class.java)
-        }!!
-        loginViewModel.authenticationState.observe(
-            viewLifecycleOwner,
-            Observer { authenticationState ->
-                when (authenticationState) {
-                    LoginViewModel.AuthenticationState.UNAUTHENTICATED -> navController.navigate(R.id.nav_login)
-                }
-            })
     }
 
     private fun onHistoryDidUpdate(result: Result<CateringHistoryItemsList?>) {
