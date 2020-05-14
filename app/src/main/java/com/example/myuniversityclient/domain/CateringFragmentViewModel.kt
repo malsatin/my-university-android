@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.example.myuniversityclient.data.models.CateringHistoryItemsList
-import com.example.myuniversityclient.data.repository.main.CateringRepository
+import com.example.myuniversityclient.data.repository.catering.CateringRepository
 import com.example.myuniversityclient.ui.models.CateringHistoryListModel
 import javax.inject.Inject
 

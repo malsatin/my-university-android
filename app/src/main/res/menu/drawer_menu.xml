@@ -17,10 +17,7 @@
             android:id="@+id/nav_electives"
             android:icon="@drawable/ic_menu_elective_24px"
             android:title="@string/menu_electives" />
-        <item
-            android:id="@+id/nav_internships"
-            android:icon="@drawable/ic_menu_internships_24px"
-            android:title="@string/menu_internships" />
+
         <item
             android:id="@+id/nav_it_services"
             android:icon="@drawable/ic_menu_it_services_24px"

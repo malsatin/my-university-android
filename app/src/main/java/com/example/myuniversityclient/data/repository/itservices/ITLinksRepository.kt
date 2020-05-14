@@ -1,9 +1,8 @@
-package com.example.myuniversityclient.data.repository.main
+package com.example.myuniversityclient.data.repository.itservices
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.myuniversityclient.data.models.ITServicesList
-import com.example.myuniversityclient.data.models.ShortUserInfo
 import javax.inject.Inject
 
 /**

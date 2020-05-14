@@ -10,11 +10,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myuniversityclient.MainApplication
 import com.example.myuniversityclient.R
-import com.example.myuniversityclient.adapter.ITServicesAdapter
-import com.example.myuniversityclient.adapter.ServiceClickListener
 import com.example.myuniversityclient.data.models.ITService
 import com.example.myuniversityclient.data.models.ITServicesList
 import com.example.myuniversityclient.domain.ITServicesFragmentViewModel
@@ -25,12 +24,13 @@ import javax.inject.Inject
 /**
  * A fragment displaying a list of IT services available to the student.
  */
-class ITServicesFragment : Fragment(), ServiceClickListener {
+class ITServicesFragment : Fragment(),
+    ServiceClickListener {
 
     @Inject lateinit var viewModel: ITServicesFragmentViewModel
 
     private var services = ArrayList<ITService>()
-    lateinit var servicesAdapter: ITServicesAdapter
+    private lateinit var servicesAdapter: ITServicesAdapter
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -43,7 +43,8 @@ class ITServicesFragment : Fragment(), ServiceClickListener {
 
         this.retainInstance = true
 
-        servicesAdapter = ITServicesAdapter(services)
+        servicesAdapter =
+            ITServicesAdapter(services)
         servicesAdapter.listener = this
     }
 
@@ -55,8 +56,10 @@ class ITServicesFragment : Fragment(), ServiceClickListener {
         val view: View = inflater.inflate(R.layout.fragment_it_services, container, false)
 
         view.recyclerView.apply {
-            layoutManager = LinearLayoutManager(context)
+            val layoutManager = LinearLayoutManager(context)
             adapter = servicesAdapter
+            this.layoutManager = layoutManager
+            addItemDecoration(DividerItemDecoration(context, layoutManager.orientation))
         }
 
         activity?.let {
