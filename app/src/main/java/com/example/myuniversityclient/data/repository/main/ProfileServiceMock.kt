@@ -37,7 +37,7 @@ class ProfileServiceMock: ProfileService {
         val mockMark = GradeBook.Mark(
             "Android",
             "A. Simonenko",
-            "A"
+            "B"
         )
         val mockGradeBook = GradeBook(
             listOf(mockMark)
@@ -67,7 +67,7 @@ class ProfileServiceMock: ProfileService {
             "Male",
             "USA",
             "123463464124",
-            "",
+            "12323434564323",
             "EA1234321"
                 )
         onResult(Result.success(mockPersonalInfo))

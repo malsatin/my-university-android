@@ -1,4 +1,4 @@
-package com.example.myuniversityclient.ui
+package com.example.myuniversityclient.ui.profile
 
 import android.content.Context
 import android.os.Bundle
@@ -41,7 +41,8 @@ class ProfileFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        profileAdapter = ProfileAdapter(this)
+        profileAdapter =
+            ProfileAdapter(this)
 
         val tabLayout: TabLayout = view.findViewById(R.id.profile_tab)
 

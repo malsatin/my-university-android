@@ -1,4 +1,4 @@
-package com.example.myuniversityclient.ui
+package com.example.myuniversityclient.ui.profile
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,9 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import com.example.myuniversityclient.R
-import com.example.myuniversityclient.data.models.profile.GradeBook
 import com.example.myuniversityclient.data.models.profile.PersonalInfo
-import java.util.*
+import java.text.SimpleDateFormat
 
 class PersonalInfoFragment: Fragment() {
     override fun onCreateView(
@@ -32,18 +31,20 @@ class PersonalInfoFragment: Fragment() {
 
     fun update(result: Result<PersonalInfo?>){
         val fullName: TextView? = view?.findViewById(R.id.fullName)
-        fullName?.text = result.getOrNull()?.fullName
+        fullName?.text = String.format("%s: %s", "Full Name",result.getOrNull()?.fullName)
         val birthDate: TextView? = view?.findViewById(R.id.birthDate)
-        birthDate?.text = result.getOrNull()?.birthDate.toString()
+        birthDate?.text = String.format("%s: %s", "Birth date",SimpleDateFormat
+            .getDateInstance()
+            .format(result.getOrNull()!!.birthDate))
         val sex: TextView? = view?.findViewById(R.id.sex)
-        sex?.text = result.getOrNull()?.sex
+        sex?.text = String.format("%s: %s", "Sex",result.getOrNull()?.sex)
         val citizenship: TextView? = view?.findViewById(R.id.citizenship)
-        citizenship?.text = result.getOrNull()?.citizenship
+        citizenship?.text = String.format("%s: %s", "Citizenship",result.getOrNull()?.citizenship)
         val snils: TextView? = view?.findViewById(R.id.snils)
-        snils?.text = result.getOrNull()?.snils
-        val inn: TextView? = view?.findViewById(R.id.snils)
-        inn?.text = result.getOrNull()?.inn
+        snils?.text = String.format("%s: %s", "SNILS",result.getOrNull()?.snils)
+        val inn: TextView? = view?.findViewById(R.id.inn)
+        inn?.text = String.format("%s: %s", "INN", result.getOrNull()?.inn)
         val registrationCertificate: TextView? = view?.findViewById(R.id.registrationCertificate)
-        registrationCertificate?.text = result.getOrNull()?.registrationCertificate
+        registrationCertificate?.text = String.format("%s: %s", "RegCertificate", result.getOrNull()?.registrationCertificate)
     }
 }
