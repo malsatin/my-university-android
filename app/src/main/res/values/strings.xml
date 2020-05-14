@@ -23,7 +23,7 @@
     <!--    Catering-->
     <string name="error_load_catering_history">Error fetching catering history</string>
     <string name="success_load_catering_history">Catering history updated</string>
-    <string name="catering_history_item_period">%s - %s</string>
+    <string name="catering_history_item_period">From %s to %s</string>
 
     <!--    IT Services-->
     <string name="success_itservices_update">Updated IT services list</string>

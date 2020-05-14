@@ -1,7 +1,7 @@
 package com.example.myuniversityclient.di
 
-import com.example.myuniversityclient.data.repository.main.CateringService
-import com.example.myuniversityclient.data.repository.main.CateringServiceMock
+import com.example.myuniversityclient.data.repository.catering.CateringService
+import com.example.myuniversityclient.data.repository.catering.CateringServiceMock
 import com.example.myuniversityclient.data.repository.electives.ElectivesService
 import com.example.myuniversityclient.data.repository.electives.ElectivesServiceMock
 import com.example.myuniversityclient.data.repository.itservices.ITLinksService

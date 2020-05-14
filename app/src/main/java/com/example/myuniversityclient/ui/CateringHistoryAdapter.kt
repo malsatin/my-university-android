@@ -1,14 +1,14 @@
-package com.example.myuniversityclient.adapter
+package com.example.myuniversityclient.ui
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myuniversityclient.R
 import com.example.myuniversityclient.data.models.CateringHistoryItem
 import com.example.myuniversityclient.databinding.CateringHistoryItemBinding
-import kotlinx.android.synthetic.main.catering_history_item.view.*
 import java.text.NumberFormat
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
 import java.util.*
 
 class CateringHistoryAdapter(private val itemList: List<CateringHistoryItem>) : RecyclerView.Adapter<CateringHistoryAdapter.ViewHolder>() {
@@ -20,9 +20,15 @@ class CateringHistoryAdapter(private val itemList: List<CateringHistoryItem>) : 
         fun bind() {
             val service = itemList[adapterPosition]
 
+            val formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)
+            val startString = formatter.format(service.start)
+            val endString = formatter.format(service.end)
             binding.period.text = itemView.context.resources.getString(
                 R.string.catering_history_item_period,
-                service.start, service.end)
+                startString,
+                endString
+            )
+
             binding.price.text = NumberFormat
                 .getCurrencyInstance(Locale("ru", "RU"))
                 .format(service.price)
@@ -39,7 +45,7 @@ class CateringHistoryAdapter(private val itemList: List<CateringHistoryItem>) : 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): CateringHistoryAdapter.ViewHolder {
+    ): ViewHolder {
         val binding = CateringHistoryItemBinding.inflate(LayoutInflater.from(parent.context))
         return ViewHolder(binding)
     }
@@ -48,7 +54,7 @@ class CateringHistoryAdapter(private val itemList: List<CateringHistoryItem>) : 
         return itemList.size
     }
 
-    override fun onBindViewHolder(holder: CateringHistoryAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind()
     }
 }
