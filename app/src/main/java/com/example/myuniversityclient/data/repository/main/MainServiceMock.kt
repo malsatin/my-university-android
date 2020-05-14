@@ -1,5 +1,6 @@
 package com.example.myuniversityclient.data.repository.main
 
+import com.example.myuniversityclient.data.models.AuthMessage
 import com.example.myuniversityclient.data.models.ShortUserInfo
 
 /**
@@ -16,7 +17,7 @@ class MainServiceMock : MainService {
         onResult(Result.success(mockInfo))
     }
 
-    override fun auth(email: String, password: String, onResult:  (Result<Nothing?>) -> Unit) {
+    override fun auth(email: String, password: String, onResult:  (Result<AuthMessage?>) -> Unit) {
         onResult(Result.success(null))
     }
 

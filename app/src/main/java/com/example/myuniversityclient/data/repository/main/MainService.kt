@@ -1,5 +1,6 @@
 package com.example.myuniversityclient.data.repository.main
 
+import com.example.myuniversityclient.data.models.AuthMessage
 import com.example.myuniversityclient.data.models.ShortUserInfo
 
 /**
@@ -14,8 +15,9 @@ interface MainService {
 
     /**
      * Fetches auth data
+     * @param onResult a callback with a message of the request.
      */
-    fun auth(email: String, password: String, onResult:  (Result<Nothing?>) -> Unit)
+    fun auth(email: String, password: String, onResult:  (Result<AuthMessage?>) -> Unit)
 
     /**
      * Clears available auth data.
