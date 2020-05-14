@@ -58,7 +58,6 @@ class MainActivity : AppCompatActivity() {
             R.id.nav_catering,
             R.id.nav_reference,
             R.id.nav_electives,
-            R.id.nav_internships,
             R.id.nav_it_services
         ), binding.drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)

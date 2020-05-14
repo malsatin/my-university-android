@@ -50,12 +50,6 @@
         tools:layout="@layout/fragment_electives_list" />
 
     <fragment
-        android:id="@+id/nav_internships"
-        android:name="com.example.myuniversityclient.ui.InternshipsFragment"
-        android:label="@string/menu_internships"
-        tools:layout="@layout/fragment_internships" />
-
-    <fragment
         android:id="@+id/nav_it_services"
         android:name="com.example.myuniversityclient.ui.ITServicesFragment"
         android:label="@string/menu_it_services"

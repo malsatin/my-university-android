@@ -4,10 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.example.myuniversityclient.data.models.ITServicesList
-import com.example.myuniversityclient.data.repository.main.ITLinksRepository
-import com.example.myuniversityclient.data.repository.main.MainRepository
+import com.example.myuniversityclient.data.repository.itservices.ITLinksRepository
 import com.example.myuniversityclient.ui.models.ITServicesListModel
-import com.example.myuniversityclient.ui.models.ShortUserInfoModel
 import javax.inject.Inject
 
 class ITServicesFragmentViewModel @Inject constructor(

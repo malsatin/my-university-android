@@ -1,4 +1,4 @@
-package com.example.myuniversityclient.data.repository.main
+package com.example.myuniversityclient.data.repository.itservices
 
 import com.example.myuniversityclient.data.models.ITServicesList
 
