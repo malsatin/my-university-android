@@ -128,7 +128,7 @@ class HttpClientService : MainService {
 
         val avatarEl = cardAvatar.getElementsByTag("img").first()
         val nameEl = cardBody.getElementsByClass("card-title").first()
-        val emailEl = navItems[2].getElementsByTag("a").first().getElementsByTag("b")
+        val emailEl = navItems[1].getElementsByTag("a").first().getElementsByTag("b")
 
         if (avatarEl == null || nameEl == null || emailEl == null) {
             throw InvalidHttpResponse("Failed to find one of elements")
