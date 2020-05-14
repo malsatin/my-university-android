@@ -13,6 +13,11 @@ interface MainService {
     fun getShortUserInfo(onResult: (Result<ShortUserInfo?>) -> Unit)
 
     /**
+     * Fetches auth data
+     */
+    fun auth(email: String, password: String, onResult:  (Result<Nothing?>) -> Unit)
+
+    /**
      * Clears available auth data.
      */
     fun logout()

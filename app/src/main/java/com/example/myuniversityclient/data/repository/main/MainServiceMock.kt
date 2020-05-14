@@ -5,7 +5,7 @@ import com.example.myuniversityclient.data.models.ShortUserInfo
 /**
  * Temporary backend substitution.
  */
-class MainServiceMock: MainService {
+class MainServiceMock : MainService {
     override fun getShortUserInfo(onResult: (Result<ShortUserInfo?>) -> Unit) {
         val mockInfo = ShortUserInfo(
             "https://my.university.innopolis.ru/persons/091a512f-5972-11e6-812e-00155d640253.jpg",
@@ -16,5 +16,9 @@ class MainServiceMock: MainService {
         onResult(Result.success(mockInfo))
     }
 
-    override fun logout() { }
+    override fun auth(email: String, password: String, onResult:  (Result<Nothing?>) -> Unit) {
+        onResult(Result.success(null))
+    }
+
+    override fun logout() {}
 }
