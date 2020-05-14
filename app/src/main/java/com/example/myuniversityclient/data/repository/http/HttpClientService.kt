@@ -7,6 +7,7 @@ import com.example.myuniversityclient.data.models.ShortUserInfo
 import com.example.myuniversityclient.data.repository.main.MainService
 import org.jsoup.Connection
 import org.jsoup.Jsoup
+import org.jsoup.nodes.Document
 import javax.inject.Inject
 
 class HttpClientService @Inject constructor(
@@ -18,12 +19,12 @@ class HttpClientService @Inject constructor(
     private var cookies: Map<String, String>?
 
     init {
-        this.cookies = HashMap()
+        this.cookies = mapOf("_identity" to "4888e5176bf6c0ea1b85f4db26700b97327d41286568c3698c3c2cce563bdbd8a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A48%3A%22%5B137%2C%22LF-PrPlzsdyf-iqzEuLasLjJHqKw_mRY%22%2C2592000%5D%22%3B%7D; Expires=Sat, 13-Jun-2020 08:53:07 GMT; Max-Age=2591999; Path=/; HttpOnly")
     }
 
     override fun getShortUserInfo(onResult: (Result<ShortUserInfo?>) -> Unit) {
         val thread = Thread(Runnable {
-            val doc = Jsoup.connect("$PORTAL_BASE_URL/profile").get()
+            val doc = requestPage("$PORTAL_BASE_URL/profile")
 
             var userInfo: ShortUserInfo? = null
             try {
@@ -93,5 +94,9 @@ class HttpClientService @Inject constructor(
 
     override fun logout() {
         cookies = null
+    }
+
+    private fun requestPage(path: String): Document {
+        return Jsoup.connect("$PORTAL_BASE_URL/profile").method(Connection.Method.GET).cookies(this.cookies).execute().parse()
     }
 }
