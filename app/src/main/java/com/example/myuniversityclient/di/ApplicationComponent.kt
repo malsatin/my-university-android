@@ -10,5 +10,5 @@ import dagger.Component
 interface ApplicationComponent {
     fun inject(activity: MainActivity)
     fun inject(cateringFragment: CateringFragment)
-
+    fun inject(fragment: ITServicesFragment)
 }

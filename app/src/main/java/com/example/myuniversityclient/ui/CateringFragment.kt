@@ -25,7 +25,7 @@ import javax.inject.Inject
 /**
  * A fragment displaying a catering history
  */
-class CateringFragment : Fragment(), ServiceClickListener {
+class CateringFragment : Fragment(), CateringHistoryAdapter.ServiceClickListener {
 
     @Inject lateinit var viewModel: CateringFragmentViewModel
 
@@ -83,8 +83,12 @@ class CateringFragment : Fragment(), ServiceClickListener {
         })
     }
 
-    override fun onClick(item: CateringHistoryItem) {
-        val toast = Toast.makeText(activity?.applicationContext, item.included_items.joinToString(), Toast.LENGTH_LONG)
+    override fun onClick(service: CateringHistoryItem) {
+        val toast = Toast.makeText(
+            activity?.applicationContext,
+            service.included_items.joinToString(),
+            Toast.LENGTH_LONG
+        )
         toast.show()
     }
 }

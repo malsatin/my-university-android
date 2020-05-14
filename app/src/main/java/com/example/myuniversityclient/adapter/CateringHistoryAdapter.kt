@@ -6,16 +6,33 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myuniversityclient.R
 import com.example.myuniversityclient.data.models.CateringHistoryItem
+import com.example.myuniversityclient.databinding.CateringHistoryItemBinding
 import kotlinx.android.synthetic.main.catering_history_item.view.*
 import java.text.NumberFormat
 import java.util.*
 
-
-interface ServiceClickListener {
-    fun onClick(service: CateringHistoryItem)
-}
-
 class CateringHistoryAdapter(private val itemList: List<CateringHistoryItem>) : RecyclerView.Adapter<CateringHistoryAdapter.ViewHolder>() {
+    interface ServiceClickListener {
+        fun onClick(service: CateringHistoryItem)
+    }
+
+    inner class ViewHolder(private val binding: CateringHistoryItemBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind() {
+            val service = itemList[adapterPosition]
+
+            binding.period.text = itemView.context.resources.getString(
+                R.string.catering_history_item_period,
+                service.start, service.end)
+            binding.price.text = NumberFormat
+                .getCurrencyInstance(Locale("ru", "RU"))
+                .format(service.price)
+            binding.items.text = service.included_items.joinToString()
+
+            itemView.setOnClickListener {
+                listener?.onClick(service)
+            }
+        }
+    }
 
     var listener: ServiceClickListener? = null
 
@@ -23,10 +40,8 @@ class CateringHistoryAdapter(private val itemList: List<CateringHistoryItem>) : 
         parent: ViewGroup,
         viewType: Int
     ): CateringHistoryAdapter.ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(
-            R.layout.catering_history_item, parent,
-            false)
-        return ViewHolder(view)
+        val binding = CateringHistoryItemBinding.inflate(LayoutInflater.from(parent.context))
+        return ViewHolder(binding)
     }
 
     override fun getItemCount(): Int {
@@ -35,24 +50,6 @@ class CateringHistoryAdapter(private val itemList: List<CateringHistoryItem>) : 
 
     override fun onBindViewHolder(holder: CateringHistoryAdapter.ViewHolder, position: Int) {
         holder.bind()
-    }
-
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        fun bind() {
-
-            val service = itemList[adapterPosition]
-
-            itemView.period.text = itemView.context.resources.getString(
-                R.string.catering_history_item_period,
-                service.start, service.end)
-            itemView.price.text = NumberFormat.getCurrencyInstance(Locale("ru", "RU")).format(service.price)
-            itemView.items.text = service.included_items.joinToString()
-
-            itemView.setOnClickListener {
-                listener?.onClick(service)
-            }
-        }
     }
 }
 
