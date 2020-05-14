@@ -14,7 +14,7 @@ import javax.inject.Singleton
 @Singleton
 class ElectivesListFragmentViewModel @Inject constructor(
     private val repository: ElectivesRepository
-): ViewModel() {
+) : ViewModel() {
     val electives: LiveData<Result<List<ElectiveItemModel>>> by lazy {
         Transformations.map(repository.getElectivesList()) { result ->
             result.map {

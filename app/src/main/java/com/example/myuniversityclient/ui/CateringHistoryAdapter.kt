@@ -11,12 +11,14 @@ import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 import java.util.*
 
-class CateringHistoryAdapter(private val itemList: List<CateringHistoryItem>) : RecyclerView.Adapter<CateringHistoryAdapter.ViewHolder>() {
+class CateringHistoryAdapter(private val itemList: List<CateringHistoryItem>) :
+    RecyclerView.Adapter<CateringHistoryAdapter.ViewHolder>() {
     interface ServiceClickListener {
         fun onClick(service: CateringHistoryItem)
     }
 
-    inner class ViewHolder(private val binding: CateringHistoryItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: CateringHistoryItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind() {
             val service = itemList[adapterPosition]
 

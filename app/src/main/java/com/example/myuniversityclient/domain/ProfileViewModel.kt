@@ -1,34 +1,32 @@
 package com.example.myuniversityclient.domain
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.example.myuniversityclient.data.models.profile.*
-import com.example.myuniversityclient.data.repository.main.MainRepository
 import com.example.myuniversityclient.data.repository.main.ProfileRepository
 import javax.inject.Inject
 
 class ProfileViewModel @Inject constructor(
     private val repository: ProfileRepository
-): ViewModel(){
+) : ViewModel() {
 
-    fun getContacts(): LiveData<Result<Contacts?>>{
+    fun getContacts(): LiveData<Result<Contacts?>> {
         return repository.getContacts()
     }
 
-    fun getGradeBook(): LiveData<Result<GradeBook?>>{
+    fun getGradeBook(): LiveData<Result<GradeBook?>> {
         return repository.getGradeBook()
     }
 
-    fun getEducationHistory(): LiveData<Result<EducationHistory?>>{
+    fun getEducationHistory(): LiveData<Result<EducationHistory?>> {
         return repository.getEducationHistory()
     }
 
-    fun getPassports(): LiveData<Result<PassportData?>>{
+    fun getPassports(): LiveData<Result<PassportData?>> {
         return repository.getPassports()
     }
 
-    fun getPersonalInfo(): LiveData<Result<PersonalInfo?>>{
+    fun getPersonalInfo(): LiveData<Result<PersonalInfo?>> {
         return repository.getPersonalInfo()
     }
 

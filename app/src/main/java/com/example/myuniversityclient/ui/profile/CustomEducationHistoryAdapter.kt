@@ -4,7 +4,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.BaseAdapter
 import android.widget.TextView
 import com.example.myuniversityclient.R
@@ -15,13 +14,13 @@ class CustomEducationHistoryAdapter(
     val context: Context,
     val objects: List<EducationHistory.EducationYear>
 
-)
-    : BaseAdapter() {
+) : BaseAdapter() {
 
-     var academicYears: ArrayList<String> = java.util.ArrayList()
-     var speciality: ArrayList<String> = java.util.ArrayList()
-     var course: ArrayList<String> = java.util.ArrayList()
-    val inflater : LayoutInflater = context.getSystemService( Context.LAYOUT_INFLATER_SERVICE ) as LayoutInflater
+    var academicYears: ArrayList<String> = java.util.ArrayList()
+    var speciality: ArrayList<String> = java.util.ArrayList()
+    var course: ArrayList<String> = java.util.ArrayList()
+    val inflater: LayoutInflater =
+        context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
 
     override fun getCount(): Int {

@@ -4,20 +4,18 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.BaseAdapter
 import android.widget.TextView
 import com.example.myuniversityclient.R
 import com.example.myuniversityclient.data.models.profile.GradeBook
-import com.example.myuniversityclient.data.models.profile.Passport
-import java.util.*
-import kotlin.collections.ArrayList
 
-class CustomGradeAdapter(val context: Context,
-                          val objects: List<GradeBook.Mark>
-) : BaseAdapter()  {
+class CustomGradeAdapter(
+    val context: Context,
+    val objects: List<GradeBook.Mark>
+) : BaseAdapter() {
 
-    val inflater : LayoutInflater = context.getSystemService( Context.LAYOUT_INFLATER_SERVICE ) as LayoutInflater
+    val inflater: LayoutInflater =
+        context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
 
     override fun getCount(): Int {

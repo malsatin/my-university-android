@@ -1,10 +1,10 @@
 package com.example.myuniversityclient.di
 
 import com.example.myuniversityclient.MainActivity
-import com.example.myuniversityclient.ui.profile.ProfileFragment
 import com.example.myuniversityclient.ui.CateringFragment
 import com.example.myuniversityclient.ui.ElectivesListFragment
 import com.example.myuniversityclient.ui.ITServicesFragment
+import com.example.myuniversityclient.ui.profile.ProfileFragment
 import dagger.Component
 import javax.inject.Singleton
 

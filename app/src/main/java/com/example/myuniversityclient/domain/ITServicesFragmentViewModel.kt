@@ -18,7 +18,7 @@ class ITServicesFragmentViewModel @Inject constructor(
         Transformations.map(repository.getITServicesList()) { result ->
             result.map {
                 ITServicesListModel(
-                    it.services
+                    it!!.services
                 )
             }
         }

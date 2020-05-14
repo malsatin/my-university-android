@@ -20,8 +20,9 @@ class NetworkModule {
     fun provideMainService(): MainService {
         return HttpClientService()
     }
+
     @Provides
-    fun providesProfileService(): ProfileService{
+    fun providesProfileService(): ProfileService {
         return ProfileServiceMock()
     }
 

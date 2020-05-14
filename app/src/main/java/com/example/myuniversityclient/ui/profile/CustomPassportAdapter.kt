@@ -4,7 +4,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.BaseAdapter
 import android.widget.TextView
 import com.example.myuniversityclient.R
@@ -13,13 +12,12 @@ import com.example.myuniversityclient.data.models.profile.Passport
 class CustomPassportAdapter(
     val context: Context,
     val passportDatas: List<Passport>
-): BaseAdapter() {
+) : BaseAdapter() {
 
 
-    val inflater : LayoutInflater = context.getSystemService( Context.LAYOUT_INFLATER_SERVICE ) as LayoutInflater
+    val inflater: LayoutInflater =
+        context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
     //var passportDatas: List<Passport> = java.util.ArrayList()
-
-
 
 
     //2
@@ -48,5 +46,6 @@ class CustomPassportAdapter(
         numberView.text = passportDatas[position].number
         authCodeView.text = passportDatas[position].authorityCode
 
-        return rowView     }
+        return rowView
+    }
 }

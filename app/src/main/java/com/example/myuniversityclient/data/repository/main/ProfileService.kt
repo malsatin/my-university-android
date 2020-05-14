@@ -1,6 +1,5 @@
 package com.example.myuniversityclient.data.repository.main
 
-import com.example.myuniversityclient.data.models.ShortUserInfo
 import com.example.myuniversityclient.data.models.profile.*
 
 /**

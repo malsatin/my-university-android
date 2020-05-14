@@ -1,5 +1,5 @@
 package com.example.myuniversityclient.data.models
 
-data class ITServicesList (
+data class ITServicesList(
     val services: List<ITService>
 )

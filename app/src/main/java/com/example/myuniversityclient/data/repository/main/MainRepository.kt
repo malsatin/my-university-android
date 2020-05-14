@@ -3,7 +3,6 @@ package com.example.myuniversityclient.data.repository.main
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.myuniversityclient.data.models.ShortUserInfo
-import com.example.myuniversityclient.data.models.profile.*
 import javax.inject.Inject
 
 /**

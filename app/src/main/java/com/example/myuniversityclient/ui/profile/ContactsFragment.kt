@@ -14,7 +14,7 @@ import com.example.myuniversityclient.R
 import com.example.myuniversityclient.data.models.profile.Contacts
 
 
-class ContactsFragment: Fragment() {
+class ContactsFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,45 +24,59 @@ class ContactsFragment: Fragment() {
         return inflater.inflate(R.layout.fragment_contacts, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?){
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
     }
 
-    fun subscribeOnViewModel(data: LiveData<Result<Contacts?>>){
+    fun subscribeOnViewModel(data: LiveData<Result<Contacts?>>) {
         data.observe(this, Observer(::update))
     }
 
-    fun update(result: Result<Contacts?>){
+    fun update(result: Result<Contacts?>) {
         val registrationAddress: TextView? = view?.findViewById(R.id.regAddress)
-        registrationAddress?.text = String.format("%s: %s", "Registration", result.getOrNull()?.registrationAddress)
+        registrationAddress?.text =
+            String.format("%s: %s", "Registration", result.getOrNull()?.registrationAddress)
 
         val residenceAddress: TextView? = view?.findViewById(R.id.resAddress)
-        residenceAddress?.text = String.format("%s: %s", "Residence", result.getOrNull()?.residenceAddress)
+        residenceAddress?.text =
+            String.format("%s: %s", "Residence", result.getOrNull()?.residenceAddress)
 
-        var adapterEmails = ArrayAdapter<String>(requireContext(), android.R.layout.simple_list_item_1, result.getOrNull()?.emails!!)
+        var adapterEmails = ArrayAdapter<String>(
+            requireContext(),
+            android.R.layout.simple_list_item_1,
+            result.getOrNull()?.emails!!
+        )
         var emails: ListView? = view?.findViewById(R.id.emails)
         emails?.adapter = adapterEmails
-        emails?.isClickable  = false
+        emails?.isClickable = false
         //emails?.isEnabled = false
-        emails?.addHeaderView(TextView(context).apply { text="Emails" })
+        emails?.addHeaderView(TextView(context).apply { text = "Emails" })
         justifyListViewHeightBasedOnChildren(emails!!)
 
-        var adapterTelegrams = ArrayAdapter<String>(requireContext(), android.R.layout.simple_list_item_1, result.getOrNull()?.telegramsAliases!!)
+        var adapterTelegrams = ArrayAdapter<String>(
+            requireContext(),
+            android.R.layout.simple_list_item_1,
+            result.getOrNull()?.telegramsAliases!!
+        )
         var telegram: ListView? = view?.findViewById(R.id.telegrams)
         telegram?.adapter = adapterTelegrams
         //telegram?.isEnabled = false
-        telegram?.isClickable  = false
-        telegram?.addHeaderView(TextView(context).apply { text="Telegram" })
+        telegram?.isClickable = false
+        telegram?.addHeaderView(TextView(context).apply { text = "Telegram" })
         justifyListViewHeightBasedOnChildren(telegram!!)
 
 
-        var adapterPhones = ArrayAdapter<String>(requireContext(), android.R.layout.simple_list_item_1, result.getOrNull()?.phones!!)
+        var adapterPhones = ArrayAdapter<String>(
+            requireContext(),
+            android.R.layout.simple_list_item_1,
+            result.getOrNull()?.phones!!
+        )
         var phones: ListView? = view?.findViewById(R.id.phones)
         phones?.adapter = adapterPhones
-        phones?.isClickable  = false
+        phones?.isClickable = false
         justifyListViewHeightBasedOnChildren(phones!!)
         //phones?.isEnabled = false
-        phones?.addHeaderView(TextView(context).apply { text="Phones" })
+        phones?.addHeaderView(TextView(context).apply { text = "Phones" })
 
 
 

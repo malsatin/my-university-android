@@ -1,17 +1,16 @@
 package com.example.myuniversityclient.data.repository.main
 
-import android.provider.ContactsContract
 import com.example.myuniversityclient.data.models.profile.*
 import java.util.*
 
-class ProfileServiceMock: ProfileService {
+class ProfileServiceMock : ProfileService {
     override fun getContacts(onResult: (Result<Contacts?>) -> Unit) {
         val mockContacts = Contacts(
             "Russia, Rep. Bashkortostan, Ufa",
             "Russia, Rep. Tatarstan, Innopolis",
             listOf("b.khabirov@innopolis.ru", "bulAtKhabiroff@gmail.ru"),
             listOf("@Mock"),
-            listOf("89991543454", "88434321343","79999193443")
+            listOf("89991543454", "88434321343", "79999193443")
         )
         onResult(Result.success(mockContacts))
     }
@@ -99,14 +98,14 @@ class ProfileServiceMock: ProfileService {
 
     override fun getPersonalInfo(onResult: (Result<PersonalInfo?>) -> Unit) {
         val mockPersonalInfo = PersonalInfo(
-                "Bulat Khabirov",
+            "Bulat Khabirov",
             Date(),
             "Male",
             "Russia",
             "123463464124",
             "020623434564323",
             "EA6234321"
-                )
+        )
         onResult(Result.success(mockPersonalInfo))
 
     }

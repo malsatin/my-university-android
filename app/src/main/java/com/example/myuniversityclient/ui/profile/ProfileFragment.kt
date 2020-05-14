@@ -2,13 +2,12 @@ package com.example.myuniversityclient.ui.profile
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.myuniversityclient.MainApplication
-
 import com.example.myuniversityclient.R
 import com.example.myuniversityclient.domain.ProfileViewModel
 import com.google.android.material.tabs.TabLayout
@@ -23,6 +22,7 @@ class ProfileFragment : Fragment() {
 
     private lateinit var viewPager: ViewPager2
     private lateinit var profileAdapter: ProfileAdapter
+
     @Inject
     lateinit var viewModel: ProfileViewModel
 
