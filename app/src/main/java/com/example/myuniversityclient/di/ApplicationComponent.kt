@@ -5,8 +5,10 @@ import com.example.myuniversityclient.ui.CateringFragment
 import com.example.myuniversityclient.ui.ElectivesListFragment
 import com.example.myuniversityclient.ui.ITServicesFragment
 import dagger.Component
+import javax.inject.Singleton
 
 // Definition of the Application graph
+@Singleton
 @Component(modules = [ApplicationModule::class, NetworkModule::class])
 interface ApplicationComponent {
     fun inject(activity: MainActivity)

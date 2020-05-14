@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun subscribeToViewModel() {
-        viewModel.getShortUserInfo().observe(this, Observer(::onUserInfoDidUpdate))
+        viewModel.shortUserInfo.observe(this, Observer(::onUserInfoDidUpdate))
     }
 
     private fun onUserInfoDidUpdate(result: Result<ShortUserInfoModel?>) {

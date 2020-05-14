@@ -11,11 +11,8 @@ import javax.inject.Inject
 class CateringRepository @Inject constructor(
     private val cateringService: CateringService
 ) {
-    private var cateringHistoryItems: MutableLiveData<Result<CateringHistoryItemsList?>>? = null
-
-    fun getCateringHistoryList(): LiveData<Result<CateringHistoryItemsList?>> {
-        val liveData = MutableLiveData<Result<CateringHistoryItemsList?>>()
-        cateringHistoryItems = liveData
+    fun getCateringHistoryList(): LiveData<Result<CateringHistoryItemsList>> {
+        val liveData = MutableLiveData<Result<CateringHistoryItemsList>>()
 
         cateringService.getCateringHistory {
             liveData.value = it
