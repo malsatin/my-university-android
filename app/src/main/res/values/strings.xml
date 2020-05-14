@@ -1,3 +1,31 @@
 <resources>
-    <string name="app_name">MyUniversityClient</string>
+    <string name="app_name">MyUniversity</string>
+
+    <!--    Menu Items-->
+    <string name="menu_profile">Profile</string>
+    <string name="menu_profile_second">Profile Second</string>
+    <string name="menu_catering">Catering</string>
+    <string name="menu_reference">Reference requests</string>
+    <string name="menu_internships">Internships</string>
+    <string name="menu_electives">Elective courses</string>
+    <string name="menu_it_services">IT services</string>
+
+    <!--    Navigation drawer and main activity-->
+    <string name="user_info_error_title">An error occurred while loading user info</string>
+
+    <!--    Elective courses fragment-->
+    <string name="elective_item_subtitle">%1$s · Subscribed on %2$s</string>
+    <string name="error_electives_update">Failed to load Electives list</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--    Catering-->
+    <string name="error_load_catering_history">Error fetching catering history</string>
+    <string name="success_load_catering_history">Catering history updated</string>
+    <string name="catering_history_item_period">From %s to %s</string>
+
+    <!--    IT Services-->
+    <string name="success_itservices_update">Updated IT services list</string>
+    <string name="error_itservices_update">Failed to load IT services list</string>
 </resources>
