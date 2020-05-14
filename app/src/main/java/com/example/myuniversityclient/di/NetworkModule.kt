@@ -4,10 +4,10 @@ import com.example.myuniversityclient.data.repository.catering.CateringService
 import com.example.myuniversityclient.data.repository.catering.CateringServiceMock
 import com.example.myuniversityclient.data.repository.electives.ElectivesService
 import com.example.myuniversityclient.data.repository.electives.ElectivesServiceMock
+import com.example.myuniversityclient.data.repository.http.HttpClientService
 import com.example.myuniversityclient.data.repository.itservices.ITLinksService
 import com.example.myuniversityclient.data.repository.itservices.ITLinksServiceMock
 import com.example.myuniversityclient.data.repository.main.MainService
-import com.example.myuniversityclient.data.repository.main.MainServiceMock
 import dagger.Module
 import dagger.Provides
 
@@ -15,7 +15,7 @@ import dagger.Provides
 class NetworkModule {
     @Provides
     fun provideMainService(): MainService {
-        return MainServiceMock()
+        return HttpClientService()
     }
 
     @Provides
