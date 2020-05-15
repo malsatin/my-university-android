@@ -1,51 +1,43 @@
 package com.example.myuniversityclient.ui.profile
 
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.TextView
-import com.example.myuniversityclient.R
+import androidx.recyclerview.widget.RecyclerView
 import com.example.myuniversityclient.data.models.profile.EducationHistory
+import com.example.myuniversityclient.databinding.ItemEducationYearBinding
 
 
 class CustomEducationHistoryAdapter(
-    val context: Context,
-    val objects: List<EducationHistory.EducationYear>
+    val educations: List<EducationHistory.EducationYear>
 
-) : BaseAdapter() {
-
-    var academicYears: ArrayList<String> = java.util.ArrayList()
-    var speciality: ArrayList<String> = java.util.ArrayList()
-    var course: ArrayList<String> = java.util.ArrayList()
-    val inflater: LayoutInflater =
-        context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-
-
-    override fun getCount(): Int {
-        return objects.size
-    }
-
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        val rowView: View = inflater.inflate(R.layout.item_education_year, null, true)
-
-        var academicYearView: TextView = rowView.findViewById(R.id.academicYear)
-        var specialityView: TextView = rowView.findViewById(R.id.speciality)
-        var courseView: TextView = rowView.findViewById(R.id.course)
-
-        academicYearView.text = objects[position].academicYear
-        specialityView.text = objects[position].speciality
-        courseView.text = objects[position].course
-
-        return rowView
-    }
-
-    override fun getItem(position: Int): EducationHistory.EducationYear {
-        return objects[position]
+) : RecyclerView.Adapter<CustomEducationHistoryAdapter.ViewHolder>() {
+    inner class ViewHolder(private val binding: ItemEducationYearBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind() {
+            val education = educations[adapterPosition]
+            binding.academicYear.text = education.academicYear
+            binding.course.text = String.format("Course: %s", education.course)
+            binding.speciality.text = education.speciality
+        }
     }
 
     override fun getItemId(position: Int): Long {
         return position.toLong()
+    }
+
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): CustomEducationHistoryAdapter.ViewHolder {
+        val binding = ItemEducationYearBinding.inflate(LayoutInflater.from(parent.context))
+        return ViewHolder(binding)
+    }
+
+    override fun getItemCount(): Int {
+        return educations.size
+    }
+
+    override fun onBindViewHolder(holder: CustomEducationHistoryAdapter.ViewHolder, position: Int) {
+        holder.bind()
     }
 }

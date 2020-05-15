@@ -6,7 +6,6 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.myuniversityclient.domain.ProfileViewModel
 
 class ProfileAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
-
     private lateinit var viewModel: ProfileViewModel
     val tabs = listOf("Info", "Docs", "Links", "Grades", "History")
     override fun getItemCount(): Int {
@@ -18,23 +17,20 @@ class ProfileAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
     }
 
     override fun createFragment(position: Int): Fragment {
-        var element = tabs[position]
+        val element = tabs[position]
         var fragment = Fragment()
-        var bundle = Bundle()
-        if (element.equals("Links")) {
-            fragment = ContactsFragment()
-                .apply { subscribeOnViewModel(viewModel.getContacts()) }
-        } else if (element.equals("Grades")) {
-            fragment = GradeBookFragment()
-                .apply { subscribeOnViewModel(viewModel.getGradeBook()) }
-        } else if (element.equals("Info")) {
-            fragment = PersonalInfoFragment()
+        val bundle = Bundle()
+
+        when(element){
+            "Links" -> fragment = ContactsFragment()
+                .apply { subscribeOnViewModel(viewModel.getContacts())}
+            "Grades" ->  fragment = GradeBookFragment()
+                .apply { subscribeOnViewModel(viewModel.getGradeBook())}
+            "Info" -> fragment = PersonalInfoFragment()
                 .apply { subscribeOnViewModel(viewModel.getPersonalInfo()) }
-        } else if (element.equals("Docs")) {
-            fragment = PassportsFragment()
+            "Docs" -> fragment = PassportsFragment()
                 .apply { subscribeOnViewModel(viewModel.getPassports()) }
-        } else if (element.equals("History")) {
-            fragment = EducationHistoryFragment()
+            "History" -> fragment = EducationHistoryFragment()
                 .apply { subscribeOnViewModel(viewModel.getEducationHistory()) }
         }
         fragment.arguments = bundle

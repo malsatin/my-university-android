@@ -1,47 +1,43 @@
 package com.example.myuniversityclient.ui.profile
 
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.TextView
-import com.example.myuniversityclient.R
+import androidx.recyclerview.widget.RecyclerView
 import com.example.myuniversityclient.data.models.profile.GradeBook
+import com.example.myuniversityclient.databinding.ItemMarkBinding
 
 class CustomGradeAdapter(
-    val context: Context,
-    val objects: List<GradeBook.Mark>
-) : BaseAdapter() {
+    val grades: List<GradeBook.Mark>
+) : RecyclerView.Adapter<CustomGradeAdapter.ViewHolder>() {
 
-    val inflater: LayoutInflater =
-        context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-
-
-    override fun getCount(): Int {
-        return objects.size
-    }
-
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        val rowView: View = inflater.inflate(R.layout.item_mark, null, true)
-
-        var disciplineView: TextView = rowView.findViewById(R.id.discipline)
-        var teacherView: TextView = rowView.findViewById(R.id.teacher)
-        var markView: TextView = rowView.findViewById(R.id.mark)
-
-        disciplineView.text = objects[position].discipline
-        teacherView.text = objects[position].teacher
-        markView.text = objects[position].mark
-
-        return rowView
-    }
-
-    override fun getItem(position: Int): GradeBook.Mark {
-        return objects[position]
+    inner class ViewHolder(private val binding: ItemMarkBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind() {
+            val grade = grades[adapterPosition]
+            binding.discipline.text = grade.discipline
+            binding.mark.text = grade.mark
+            binding.teacher.text = grade.teacher
+        }
     }
 
     override fun getItemId(position: Int): Long {
         return position.toLong()
+    }
+
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): CustomGradeAdapter.ViewHolder {
+        val binding = ItemMarkBinding.inflate(LayoutInflater.from(parent.context))
+        return ViewHolder(binding)
+    }
+
+    override fun getItemCount(): Int {
+        return grades.size
+    }
+
+    override fun onBindViewHolder(holder: CustomGradeAdapter.ViewHolder, position: Int) {
+        holder.bind()
     }
 
 }

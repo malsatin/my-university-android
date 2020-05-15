@@ -18,7 +18,7 @@ class ProfileServiceMock : ProfileService {
     override fun getEducationHistory(onResult: (Result<EducationHistory?>) -> Unit) {
         val mockEducationYear1 = EducationHistory.EducationYear(
             Date(),
-            "CS",
+            "Computer Science",
             "1",
             "BS16-01",
             "2016-2017",
@@ -66,12 +66,12 @@ class ProfileServiceMock : ProfileService {
             "B"
         )
         val mockMark2 = GradeBook.Mark(
-            "SQR",
+            "Software quality and reliability",
             "A. Sadovukh",
             "A"
         )
         val mockMark3 = GradeBook.Mark(
-            "OS",
+            "Operating systems",
             "G.Succi",
             "A"
         )

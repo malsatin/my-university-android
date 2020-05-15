@@ -1,62 +1,64 @@
 package com.example.myuniversityclient.ui.profile
 
 import android.content.Context
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ListView
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.myuniversityclient.MainApplication
 import com.example.myuniversityclient.R
+import com.example.myuniversityclient.data.models.profile.Passport
 import com.example.myuniversityclient.data.models.profile.PassportData
+import kotlinx.android.synthetic.main.fragment_passport.view.*
 
 class PassportsFragment : Fragment() {
+
+    lateinit var passportAdapter: CustomPassportAdapter
+    private var passports =  ArrayList<Passport>()
+
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        // Dagger DI
+        (MainApplication.APPLICATION as MainApplication).appComponent.inject(this)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        this.retainInstance = true
+        passportAdapter = CustomPassportAdapter(passports)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_passport, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
+        var view: View = inflater.inflate(R.layout.fragment_passport, container, false)
+        view.passportRecyclerView.apply {
+            val layoutManager = LinearLayoutManager(context)
+            adapter = passportAdapter
+            this.layoutManager = layoutManager
+            addItemDecoration(DividerItemDecoration(context, layoutManager.orientation))
+        }
+        return view
     }
 
     fun subscribeOnViewModel(data: LiveData<Result<PassportData?>>) {
-        data.observe(this, Observer(::update))
+        data.observe(this, Observer(::onPassportUpdate))
     }
 
-    fun update(result: Result<PassportData?>) {
-
-        var adapterPassports = CustomPassportAdapter(
-            requireContext(), result.getOrNull()?.passports!!
-        )
-        var passports: ListView? = view?.findViewById(R.id.passports)
-        passports?.addHeaderView(getHeader())
-        passports?.adapter = adapterPassports
-    }
-
-    private fun getHeader(): View {
-        val inflater: LayoutInflater =
-            context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val rowView: View = inflater.inflate(R.layout.item_passport, null, true)
-        var seriesView: TextView = rowView.findViewById(R.id.series)
-        var numberView: TextView = rowView.findViewById(R.id.number)
-        var authCodeView: TextView = rowView.findViewById(R.id.authCode)
-
-        seriesView.text = "Series"
-        seriesView.setTextColor(Color.BLACK)
-        numberView.text = "Number"
-        numberView.setTextColor(Color.BLACK)
-        authCodeView.text = "AuthCode"
-        authCodeView.setTextColor(Color.BLACK)
-
-        return rowView
-
+    fun onPassportUpdate(result: Result<PassportData?>) {
+        result.fold({
+            passports.clear()
+            passports.addAll(it?.passports!!)
+            passportAdapter.notifyDataSetChanged()
+        }, {})
     }
 }

@@ -5,56 +5,60 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ListView
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.myuniversityclient.MainApplication
 import com.example.myuniversityclient.R
 import com.example.myuniversityclient.data.models.profile.GradeBook
+import kotlinx.android.synthetic.main.fragment_gradebook.view.*
 
 class GradeBookFragment : Fragment() {
+
+    private var grades = ArrayList<GradeBook.Mark>()
+    lateinit var gradeBookAdapter: CustomGradeAdapter
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        // Dagger DI
+        (MainApplication.APPLICATION as MainApplication).appComponent.inject(this)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        this.retainInstance = true
+        gradeBookAdapter = CustomGradeAdapter(grades)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_gradebook, container, false)
-    }
+        var view: View = inflater.inflate(R.layout.fragment_gradebook, container, false)
+        view.gradeBookRecyclerView.apply {
+            val layoutManager = LinearLayoutManager(context)
+            adapter = gradeBookAdapter
+            this.layoutManager = layoutManager
+            addItemDecoration(DividerItemDecoration(context, layoutManager.orientation))
+        }
+        return view    }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-    }
 
     fun subscribeOnViewModel(data: LiveData<Result<GradeBook?>>) {
-        data.observe(this, Observer(::update))
+        data.observe(this, Observer(::onGradeBookUpdate))
     }
 
-    fun update(result: Result<GradeBook?>) {
-        var adapterGrades = CustomGradeAdapter(
-            requireContext(),
-            result.getOrNull()?.grades!!
-        )
-        var grades: ListView? = view?.findViewById(R.id.marks)
-        grades?.addHeaderView(getHeader())
-        grades?.adapter = adapterGrades
-
-    }
-
-    private fun getHeader(): View {
-        val inflater: LayoutInflater =
-            context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val rowView: View = inflater.inflate(R.layout.item_mark, null, true)
-        var disciplineView: TextView = rowView.findViewById(R.id.discipline)
-        var teacherView: TextView = rowView.findViewById(R.id.teacher)
-        var markView: TextView = rowView.findViewById(R.id.mark)
-
-        disciplineView.text = "Discipline"
-        teacherView.text = "Teacher"
-        markView.text = "Mark"
-
-        return rowView
+    fun onGradeBookUpdate(result: Result<GradeBook?>) {
+        result.fold({
+            grades.clear()
+            grades.addAll(it?.grades!!)
+            gradeBookAdapter.notifyDataSetChanged()
+        }, {})
 
     }
 }

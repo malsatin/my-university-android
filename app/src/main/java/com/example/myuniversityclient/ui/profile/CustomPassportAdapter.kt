@@ -1,51 +1,51 @@
 package com.example.myuniversityclient.ui.profile
 
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.TextView
-import com.example.myuniversityclient.R
+import androidx.recyclerview.widget.RecyclerView
 import com.example.myuniversityclient.data.models.profile.Passport
+import com.example.myuniversityclient.databinding.ItemPassportBinding
 
 class CustomPassportAdapter(
-    val context: Context,
     val passportDatas: List<Passport>
-) : BaseAdapter() {
+) : RecyclerView.Adapter<CustomPassportAdapter.ViewHolder>()  {
 
+//    val inflater: LayoutInflater =
+//        context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
-    val inflater: LayoutInflater =
-        context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-    //var passportDatas: List<Passport> = java.util.ArrayList()
-
-
-    //2
-    override fun getItem(position: Int): Passport {
-        return passportDatas[position]
-    }
-
-    //3
     override fun getItemId(position: Int): Long {
         return position.toLong()
     }
 
-    override fun getCount(): Int {
+
+    inner class ViewHolder(private val binding: ItemPassportBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind() {
+            val passport = passportDatas[adapterPosition]
+
+//            val formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)
+//            val startString = formatter.format(service.start)
+//            val endString = formatter.format(service.end)
+            binding.doc.text = "Passport"
+
+            binding.seriesAndNumber.text = String.format("Series: %s Number: %s", passport.passportSeries, passport.number)
+            binding.authCode.text = String.format("Auth code: %s", passport.authorityCode)
+        }
+    }
+
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): CustomPassportAdapter.ViewHolder {
+        val binding = ItemPassportBinding.inflate(LayoutInflater.from(parent.context))
+        return ViewHolder(binding)
+    }
+
+    override fun getItemCount(): Int {
         return passportDatas.size
     }
 
-
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        val rowView: View = inflater.inflate(R.layout.item_passport, null, true)
-
-        var seriesView: TextView = rowView.findViewById(R.id.series)
-        var numberView: TextView = rowView.findViewById(R.id.number)
-        var authCodeView: TextView = rowView.findViewById(R.id.authCode)
-
-        seriesView.text = passportDatas[position].passportSeries
-        numberView.text = passportDatas[position].number
-        authCodeView.text = passportDatas[position].authorityCode
-
-        return rowView
+    override fun onBindViewHolder(holder: CustomPassportAdapter.ViewHolder, position: Int) {
+        holder.bind()
     }
 }
