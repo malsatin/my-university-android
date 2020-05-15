@@ -60,23 +60,21 @@ class CateringFragment : Fragment(), CateringHistoryAdapter.ServiceClickListener
         }
 
         activity?.let {
-            viewModel.getCateringHistoryList().observe(it, Observer(::onHistoryDidUpdate))
+            viewModel.cateringHistoryList.observe(it, Observer(::onHistoryDidUpdate))
         }
 
         return view
     }
 
-    private fun onHistoryDidUpdate(result: Result<CateringHistoryItemsList?>) {
+    private fun onHistoryDidUpdate(result: Result<CateringHistoryItemsList>) {
         result.fold({
-            if (it != null) {
-                history.clear()
-                history.addAll(it.history)
+            history.clear()
+            history.addAll(it.history)
 
-                historyAdapter.notifyDataSetChanged()
+            historyAdapter.notifyDataSetChanged()
 
-                val toast = Toast.makeText(activity?.applicationContext, R.string.success_load_catering_history, Toast.LENGTH_LONG)
-                toast.show()
-            }
+            val toast = Toast.makeText(activity?.applicationContext, R.string.success_load_catering_history, Toast.LENGTH_LONG)
+            toast.show()
         }, {
             val toast = Toast.makeText(activity?.applicationContext, R.string.error_load_catering_history, Toast.LENGTH_LONG)
             toast.show()

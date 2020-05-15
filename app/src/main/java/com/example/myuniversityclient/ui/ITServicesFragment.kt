@@ -63,25 +63,18 @@ class ITServicesFragment : Fragment(),
         }
 
         activity?.let {
-            viewModel.getITServicesList().observe(it, Observer(::onITServicesDidUpdate))
+            viewModel.itServicesList.observe(it, Observer(::onITServicesDidUpdate))
         }
 
         return view
     }
 
-    private fun onITServicesDidUpdate(result: Result<ITServicesList?>) {
+    private fun onITServicesDidUpdate(result: Result<ITServicesList>) {
         result.fold({
-            if (it != null) {
-                services.clear()
-                services.addAll(it.services)
+            services.clear()
+            services.addAll(it.services)
 
-                servicesAdapter.notifyDataSetChanged()
-
-                val toast = Toast.makeText(context, R.string.success_itservices_update, Toast.LENGTH_SHORT)
-                toast.show()
-
-
-            }
+            servicesAdapter.notifyDataSetChanged()
         }, {
             val toast = Toast.makeText(context, R.string.error_itservices_update, Toast.LENGTH_SHORT)
             toast.show()

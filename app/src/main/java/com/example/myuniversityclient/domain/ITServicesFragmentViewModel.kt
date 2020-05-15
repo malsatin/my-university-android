@@ -7,24 +7,20 @@ import com.example.myuniversityclient.data.models.ITServicesList
 import com.example.myuniversityclient.data.repository.itservices.ITLinksRepository
 import com.example.myuniversityclient.ui.models.ITServicesListModel
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class ITServicesFragmentViewModel @Inject constructor(
     private val repository: ITLinksRepository
 ): ViewModel() {
-
-    fun getITServicesList(): LiveData<Result<ITServicesList?>> {
+    val itServicesList: LiveData<Result<ITServicesList>> by lazy {
         // map to a new live data object
-        return Transformations.map(repository.getITServicesList()) { result ->
+        Transformations.map(repository.getITServicesList()) { result ->
             result.map {
-                if (it != null) {
-                    ITServicesListModel(
-                        it.services
-                    )
-                } else {
-                    null
-                }
+                ITServicesListModel(
+                    it.services
+                )
             }
         }
     }
-
 }

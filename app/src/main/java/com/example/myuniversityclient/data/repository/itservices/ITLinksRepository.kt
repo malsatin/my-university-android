@@ -11,12 +11,8 @@ import javax.inject.Inject
 class ITLinksRepository @Inject constructor(
     private val itLinksService: ITLinksService
 ) {
-    private var itServices: MutableLiveData<Result<ITServicesList?>>? = null
-
-
-    fun getITServicesList(): LiveData<Result<ITServicesList?>> {
-        val liveData = MutableLiveData<Result<ITServicesList?>>()
-        itServices = liveData
+    fun getITServicesList(): LiveData<Result<ITServicesList>> {
+        val liveData = MutableLiveData<Result<ITServicesList>>()
 
         itLinksService.getITServices {
             liveData.value = it
