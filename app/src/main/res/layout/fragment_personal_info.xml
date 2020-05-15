@@ -1,104 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/fullName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
         android:text="FullName"
+        app:helperText="FullName"
         app:layout_constraintBottom_toTopOf="@id/birthDate"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:layout_alignParentStart="true"
         android:gravity="start"
 
-        android:textSize="24sp"/>
+        android:textSize="24sp"
+        android:editable="false"
+        >
 
-    <TextView
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:editable="false"
+            />
+</com.google.android.material.textfield.TextInputLayout>
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/birthDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="birthDate"
+        android:layout_marginLeft="10dp"
+        android:text="Birth date"
+        app:helperText="Birth date"
         app:layout_constraintBottom_toTopOf="@id/sex"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fullName"
+        android:layout_alignParentStart="true"
         android:gravity="start"
-        android:textSize="24sp"/>
+        android:textSize="24sp"
+        android:editable="false"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:editable="false" />
+</com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/sex"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="sex"
+        android:layout_marginLeft="10dp"
+        android:text="Sex"
+        app:helperText="Sex"
         app:layout_constraintBottom_toTopOf="@id/citizenship"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/birthDate"
+        android:layout_alignParentStart="true"
         android:gravity="start"
         android:textSize="24sp"
-         />
+        android:editable="false"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:editable="false"
+            />
+</com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/citizenship"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="citizenship"
+        android:text="Citizenship"
+        app:helperText="Citizenship"
+        android:layout_marginLeft="10dp"
         app:layout_constraintBottom_toTopOf="@id/snils"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/sex"
+        android:layout_alignParentStart="true"
         android:gravity="start"
         android:textSize="24sp"
-         />
+        android:editable="false"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:editable="false"
+            />
+</com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/snils"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="snils"
+        android:text="Snils"
+        app:helperText="Snils"
+        android:layout_marginLeft="10dp"
         app:layout_constraintBottom_toTopOf="@id/inn"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/citizenship"
+        android:layout_alignParentStart="true"
         android:gravity="start"
         android:textSize="24sp"
-         />
+        android:editable="false"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:editable="false"
+            />
+</com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/inn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="inn"
+        android:text="Inn"
+        app:helperText="Inn"
+        android:layout_marginLeft="10dp"
         app:layout_constraintBottom_toTopOf="@id/registrationCertificate"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/snils"
+        android:layout_alignParentStart="true"
         android:gravity="start"
         android:textSize="24sp"
-         />
+        android:editable="false"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:editable="false"
+            />
+</com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/registrationCertificate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
         android:gravity="start|left"
-        android:text="registrationCertificate"
+        android:text="Registration Certificate"
+        app:helperText="Registration Certificate"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/inn" />
+        android:layout_alignParentStart="true"
+        app:layout_constraintTop_toBottomOf="@id/inn"
+        android:editable="false"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:editable="false"
+            />
+</com.google.android.material.textfield.TextInputLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
