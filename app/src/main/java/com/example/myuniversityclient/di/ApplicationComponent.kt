@@ -4,6 +4,7 @@ import com.example.myuniversityclient.MainActivity
 import com.example.myuniversityclient.ui.CateringFragment
 import com.example.myuniversityclient.ui.ElectivesListFragment
 import com.example.myuniversityclient.ui.ITServicesFragment
+import com.example.myuniversityclient.ui.LoginFragment
 import dagger.Component
 import javax.inject.Singleton
 
@@ -15,4 +16,5 @@ interface ApplicationComponent {
     fun inject(cateringFragment: CateringFragment)
     fun inject(fragment: ITServicesFragment)
     fun inject(fragment: ElectivesListFragment)
+    fun inject(fragment: LoginFragment)
 }

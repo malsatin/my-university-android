@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,7 +23,7 @@ import javax.inject.Inject
 /**
  * A fragment displaying a list of IT services available to the student.
  */
-class ITServicesFragment : Fragment(),
+class ITServicesFragment : AuthenticatedFragment(),
     ServiceClickListener {
 
     @Inject lateinit var viewModel: ITServicesFragmentViewModel
@@ -69,10 +68,10 @@ class ITServicesFragment : Fragment(),
         return view
     }
 
-    private fun onITServicesDidUpdate(result: Result<ITServicesList>) {
+    private fun onITServicesDidUpdate(result: Result<ITServicesList?>) {
         result.fold({
             services.clear()
-            services.addAll(it.services)
+            services.addAll(it!!.services)
 
             servicesAdapter.notifyDataSetChanged()
         }, {

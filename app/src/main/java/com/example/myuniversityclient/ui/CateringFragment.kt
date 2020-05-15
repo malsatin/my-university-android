@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,9 +21,10 @@ import javax.inject.Inject
 /**
  * A fragment displaying a catering history
  */
-class CateringFragment : Fragment(), CateringHistoryAdapter.ServiceClickListener {
+class CateringFragment : AuthenticatedFragment(), CateringHistoryAdapter.ServiceClickListener {
 
-    @Inject lateinit var viewModel: CateringFragmentViewModel
+    @Inject
+    lateinit var viewModel: CateringFragmentViewModel
 
     private var history = ArrayList<CateringHistoryItem>()
     lateinit var historyAdapter: CateringHistoryAdapter
@@ -66,10 +66,10 @@ class CateringFragment : Fragment(), CateringHistoryAdapter.ServiceClickListener
         return view
     }
 
-    private fun onHistoryDidUpdate(result: Result<CateringHistoryItemsList>) {
+    private fun onHistoryDidUpdate(result: Result<CateringHistoryItemsList?>) {
         result.fold({
             history.clear()
-            history.addAll(it.history)
+            history.addAll(it!!.history)
 
             historyAdapter.notifyDataSetChanged()
 

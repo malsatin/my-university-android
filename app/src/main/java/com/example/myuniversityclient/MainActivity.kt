@@ -1,8 +1,9 @@
 package com.example.myuniversityclient
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -11,6 +12,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.myuniversityclient.databinding.ActivityMainBinding
+import com.example.myuniversityclient.domain.LoginViewModel
 import com.example.myuniversityclient.domain.MainActivityViewModel
 import com.example.myuniversityclient.ui.models.ShortUserInfoModel
 import kotlinx.android.synthetic.main.app_bar_main.view.*
@@ -22,13 +24,14 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
     @Inject lateinit var viewModel: MainActivityViewModel
+    lateinit var loginViewModel: LoginViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         // Dagger DI
         (applicationContext as MainApplication).appComponent.inject(this)
 
         super.onCreate(savedInstanceState)
-
+        loginViewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
         // Setup
         setupMainViews()
         setupDrawerMenu()
