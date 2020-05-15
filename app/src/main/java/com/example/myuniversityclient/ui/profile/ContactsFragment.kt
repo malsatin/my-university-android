@@ -44,7 +44,7 @@ class ContactsFragment : Fragment() {
         )
         var emails: ListView? = view?.findViewById(R.id.emails)
         emails?.adapter = adapterEmails
-        emails?.addHeaderView(TextView(context).apply { text = "Emails" })
+        emails?.addHeaderView(TextView(context).apply { text = context.getString(R.string.emails_name) })
         justifyListViewHeightBasedOnChildren(emails!!)
 
         var adapterTelegrams = ArrayAdapter<String>(
@@ -54,7 +54,7 @@ class ContactsFragment : Fragment() {
         )
         var telegram: ListView? = view?.findViewById(R.id.telegrams)
         telegram?.adapter = adapterTelegrams
-        telegram?.addHeaderView(TextView(context).apply { text = "Telegram" })
+        telegram?.addHeaderView(TextView(context).apply { text = context.getString(R.string.telegram_name) })
         justifyListViewHeightBasedOnChildren(telegram!!)
 
 
@@ -65,7 +65,7 @@ class ContactsFragment : Fragment() {
         )
         var phones: ListView? = view?.findViewById(R.id.phones)
         phones?.adapter = adapterPhones
-        phones?.addHeaderView(TextView(context).apply { text = "Phones" })
+        phones?.addHeaderView(TextView(context).apply { text = context.getString(R.string.phones_name) })
         justifyListViewHeightBasedOnChildren(phones!!)
     }
 }

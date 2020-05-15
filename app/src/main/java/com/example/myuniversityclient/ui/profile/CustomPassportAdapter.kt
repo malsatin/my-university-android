@@ -3,6 +3,7 @@ package com.example.myuniversityclient.ui.profile
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myuniversityclient.R
 import com.example.myuniversityclient.data.models.profile.Passport
 import com.example.myuniversityclient.databinding.ItemPassportBinding
 
@@ -14,11 +15,14 @@ class CustomPassportAdapter(
         RecyclerView.ViewHolder(binding.root) {
         fun bind() {
             val passport = passportDatas[adapterPosition]
-            binding.doc.text = "Passport"
+            binding.doc.text = itemView.context.resources.getString(R.string.passport)
 
             binding.seriesAndNumber.text =
-                String.format("Series: %s Number: %s", passport.passportSeries, passport.number)
-            binding.authCode.text = String.format("Auth code: %s", passport.authorityCode)
+                String.format(itemView.context.resources.getString(R.string.passport_data_format),
+                    passport.passportSeries,
+                    passport.number)
+            binding.authCode.text = String.format(itemView.context.resources.getString(R.string.auth_code_format),
+                passport.authorityCode)
         }
     }
 

@@ -3,6 +3,7 @@ package com.example.myuniversityclient.ui.profile
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myuniversityclient.R
 import com.example.myuniversityclient.data.models.profile.EducationHistory
 import com.example.myuniversityclient.databinding.ItemEducationYearBinding
 
@@ -16,7 +17,8 @@ class CustomEducationHistoryAdapter(
         fun bind() {
             val education = educations[adapterPosition]
             binding.academicYear.text = education.academicYear
-            binding.course.text = String.format("Course: %s", education.course)
+            binding.course.text = String.format(itemView.context.resources.getString(R.string.course_format),
+                education.course)
             binding.speciality.text = education.speciality
         }
     }
