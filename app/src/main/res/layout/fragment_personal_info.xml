@@ -8,7 +8,7 @@
         android:id="@+id/fullName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="1dp"
         android:layout_marginLeft="10dp"
         android:text="FullName"
         app:helperText="FullName"
@@ -21,12 +21,15 @@
 
         android:textSize="24sp"
         android:editable="false"
+        android:background="@android:color/transparent"
         >
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:editable="false"
+            android:background="@android:color/transparent"
+
             />
 </com.google.android.material.textfield.TextInputLayout>
 
@@ -36,7 +39,6 @@
         android:id="@+id/birthDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:layout_marginLeft="10dp"
         android:text="Birth date"
         app:helperText="Birth date"
@@ -47,10 +49,13 @@
         android:gravity="start"
         android:textSize="24sp"
         android:editable="false"
+        android:background="@android:color/transparent"
         >
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+
             android:editable="false" />
 </com.google.android.material.textfield.TextInputLayout>
 
@@ -69,11 +74,14 @@
         android:gravity="start"
         android:textSize="24sp"
         android:editable="false"
+        android:background="@android:color/transparent"
         >
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:editable="false"
+            android:background="@android:color/transparent"
+
             />
 </com.google.android.material.textfield.TextInputLayout>
 
@@ -92,11 +100,14 @@
         android:gravity="start"
         android:textSize="24sp"
         android:editable="false"
+        android:background="@android:color/transparent"
         >
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:editable="false"
+            android:background="@android:color/transparent"
+
             />
 </com.google.android.material.textfield.TextInputLayout>
 
@@ -115,11 +126,14 @@
         android:gravity="start"
         android:textSize="24sp"
         android:editable="false"
+        android:background="@android:color/transparent"
         >
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:editable="false"
+            android:background="@android:color/transparent"
+
             />
 </com.google.android.material.textfield.TextInputLayout>
 
@@ -138,11 +152,14 @@
         android:gravity="start"
         android:textSize="24sp"
         android:editable="false"
+        android:background="@android:color/transparent"
         >
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:editable="false"
+            android:background="@android:color/transparent"
+
             />
 </com.google.android.material.textfield.TextInputLayout>
 
@@ -151,6 +168,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
+        android:layout_marginBottom="5dp"
         android:gravity="start|left"
         android:text="Registration Certificate"
         app:helperText="Registration Certificate"
@@ -159,11 +177,14 @@
         android:layout_alignParentStart="true"
         app:layout_constraintTop_toBottomOf="@id/inn"
         android:editable="false"
+        android:background="@android:color/transparent"
         >
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:editable="false"
+            android:background="@android:color/transparent"
+
             />
 </com.google.android.material.textfield.TextInputLayout>
 

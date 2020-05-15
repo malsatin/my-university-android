@@ -12,6 +12,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import com.example.myuniversityclient.R
 import com.example.myuniversityclient.data.models.profile.Contacts
+import com.google.android.material.textfield.TextInputLayout
 
 
 class ContactsFragment : Fragment() {
@@ -33,13 +34,11 @@ class ContactsFragment : Fragment() {
     }
 
     fun update(result: Result<Contacts?>) {
-        val registrationAddress: TextView? = view?.findViewById(R.id.regAddress)
-        registrationAddress?.text =
-            String.format("%s: %s", "Registration", result.getOrNull()?.registrationAddress)
+        val registrationAddress: TextInputLayout? = view?.findViewById(R.id.regAddress)
+        registrationAddress?.editText?.text?.append(result.getOrNull()?.registrationAddress)
 
-        val residenceAddress: TextView? = view?.findViewById(R.id.resAddress)
-        residenceAddress?.text =
-            String.format("%s: %s", "Residence", result.getOrNull()?.residenceAddress)
+        val residenceAddress: TextInputLayout? = view?.findViewById(R.id.resAddress)
+        residenceAddress?.editText?.text?.append(result.getOrNull()?.residenceAddress)
 
         var adapterEmails = ArrayAdapter<String>(
             requireContext(),
@@ -51,6 +50,7 @@ class ContactsFragment : Fragment() {
         emails?.isClickable = false
         //emails?.isEnabled = false
         emails?.addHeaderView(TextView(context).apply { text = "Emails" })
+        emails?.isNestedScrollingEnabled = false
         justifyListViewHeightBasedOnChildren(emails!!)
 
         var adapterTelegrams = ArrayAdapter<String>(
@@ -63,6 +63,7 @@ class ContactsFragment : Fragment() {
         //telegram?.isEnabled = false
         telegram?.isClickable = false
         telegram?.addHeaderView(TextView(context).apply { text = "Telegram" })
+        telegram?.isNestedScrollingEnabled = false
         justifyListViewHeightBasedOnChildren(telegram!!)
 
 
@@ -74,14 +75,10 @@ class ContactsFragment : Fragment() {
         var phones: ListView? = view?.findViewById(R.id.phones)
         phones?.adapter = adapterPhones
         phones?.isClickable = false
-        justifyListViewHeightBasedOnChildren(phones!!)
         //phones?.isEnabled = false
         phones?.addHeaderView(TextView(context).apply { text = "Phones" })
-
-
-
-        residenceAddress?.text = result.getOrNull()?.residenceAddress
-
+        phones?.isNestedScrollingEnabled = false
+        justifyListViewHeightBasedOnChildren(phones!!)
 
     }
 
@@ -98,6 +95,9 @@ class ContactsFragment : Fragment() {
         par.height = totalHeight + listView.dividerHeight * (adapter.count - 1)
         listView.layoutParams = par
         listView.requestLayout()
+
     }
+
+
 
 }

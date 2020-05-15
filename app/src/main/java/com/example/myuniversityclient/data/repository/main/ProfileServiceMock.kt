@@ -10,7 +10,7 @@ class ProfileServiceMock : ProfileService {
             "Russia, Rep. Tatarstan, Innopolis",
             listOf("b.khabirov@innopolis.ru", "bulAtKhabiroff@gmail.ru"),
             listOf("@Mock"),
-            listOf("89991543454", "88434321343", "79999193443")
+            listOf("89991543454", "88434321343")
         )
         onResult(Result.success(mockContacts))
     }
@@ -76,7 +76,7 @@ class ProfileServiceMock : ProfileService {
             "A"
         )
         val mockGradeBook = GradeBook(
-            listOf(mockMark1, mockMark2)
+            listOf(mockMark1, mockMark2, mockMark3)
         )
         onResult(Result.success(mockGradeBook))
 

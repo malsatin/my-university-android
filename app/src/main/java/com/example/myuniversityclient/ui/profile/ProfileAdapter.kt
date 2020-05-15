@@ -8,7 +8,7 @@ import com.example.myuniversityclient.domain.ProfileViewModel
 class ProfileAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
     private lateinit var viewModel: ProfileViewModel
-    val tabs = listOf("Info", "Docs", "Contact", "Grades", "History")
+    val tabs = listOf("Info", "Docs", "Links", "Grades", "History")
     override fun getItemCount(): Int {
         return tabs.size
     }
@@ -21,7 +21,7 @@ class ProfileAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
         var element = tabs[position]
         var fragment = Fragment()
         var bundle = Bundle()
-        if (element.equals("Contact")) {
+        if (element.equals("Links")) {
             fragment = ContactsFragment()
                 .apply { subscribeOnViewModel(viewModel.getContacts()) }
         } else if (element.equals("Grades")) {

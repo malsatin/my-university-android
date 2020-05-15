@@ -1,6 +1,7 @@
 package com.example.myuniversityclient.ui.profile
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -31,7 +32,6 @@ class PassportsFragment : Fragment() {
     }
 
     fun update(result: Result<PassportData?>) {
-        println("PASS")
 
         var adapterPassports = CustomPassportAdapter(
             requireContext(), result.getOrNull()?.passports!!
@@ -50,8 +50,11 @@ class PassportsFragment : Fragment() {
         var authCodeView: TextView = rowView.findViewById(R.id.authCode)
 
         seriesView.text = "Series"
+        seriesView.setTextColor(Color.BLACK)
         numberView.text = "Number"
+        numberView.setTextColor(Color.BLACK)
         authCodeView.text = "AuthCode"
+        authCodeView.setTextColor(Color.BLACK)
 
         return rowView
 
