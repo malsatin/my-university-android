@@ -21,10 +21,6 @@ class CustomEducationHistoryAdapter(
         }
     }
 
-    override fun getItemId(position: Int): Long {
-        return position.toLong()
-    }
-
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -35,6 +31,10 @@ class CustomEducationHistoryAdapter(
 
     override fun getItemCount(): Int {
         return educations.size
+    }
+
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
     }
 
     override fun onBindViewHolder(holder: CustomEducationHistoryAdapter.ViewHolder, position: Int) {

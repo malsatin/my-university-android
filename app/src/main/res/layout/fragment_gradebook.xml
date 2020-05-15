@@ -10,6 +10,6 @@
         android:id="@+id/gradeBookRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/item_mark"/>
+        tools:listitem="@layout/item_mark" />
 
 </FrameLayout>

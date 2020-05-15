@@ -8,9 +8,8 @@ import com.example.myuniversityclient.data.repository.http.HttpClientService
 import com.example.myuniversityclient.data.repository.itservices.ITLinksService
 import com.example.myuniversityclient.data.repository.itservices.ITLinksServiceMock
 import com.example.myuniversityclient.data.repository.main.MainService
-import com.example.myuniversityclient.data.repository.main.MainServiceMock
-import com.example.myuniversityclient.data.repository.main.ProfileService
-import com.example.myuniversityclient.data.repository.main.ProfileServiceMock
+import com.example.myuniversityclient.data.repository.profile.ProfileService
+import com.example.myuniversityclient.data.repository.profile.ProfileServiceMock
 import dagger.Module
 import dagger.Provides
 

@@ -13,6 +13,13 @@ import com.google.android.material.textfield.TextInputLayout
 import java.text.SimpleDateFormat
 
 class PersonalInfoFragment : Fragment() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        this.retainInstance = true
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -21,19 +28,16 @@ class PersonalInfoFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_personal_info, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-    }
-
     fun subscribeOnViewModel(data: LiveData<Result<PersonalInfo?>>) {
         data.observe(this, Observer(::update))
     }
 
     fun update(result: Result<PersonalInfo?>) {
         val fullName: TextInputLayout? = view?.findViewById(R.id.fullName)
-        fullName?.editText?.text?.append( result.getOrNull()?.fullName)
+        fullName?.editText?.text?.append(result.getOrNull()?.fullName)
         val birthDate: TextInputLayout? = view?.findViewById(R.id.birthDate)
-        birthDate?.editText?.text?.append( SimpleDateFormat
+        birthDate?.editText?.text?.append(
+            SimpleDateFormat
                 .getDateInstance()
                 .format(result.getOrNull()!!.birthDate)
         )
@@ -44,8 +48,9 @@ class PersonalInfoFragment : Fragment() {
         val snils: TextInputLayout? = view?.findViewById(R.id.snils)
         snils?.editText?.text?.append(result.getOrNull()?.snils)
         val inn: TextInputLayout? = view?.findViewById(R.id.inn)
-        inn?.editText?.text?.append( result.getOrNull()?.inn)
-        val registrationCertificate: TextInputLayout? = view?.findViewById(R.id.registrationCertificate)
+        inn?.editText?.text?.append(result.getOrNull()?.inn)
+        val registrationCertificate: TextInputLayout? =
+            view?.findViewById(R.id.registrationCertificate)
         registrationCertificate?.editText?.text?.append(result.getOrNull()?.registrationCertificate)
 
     }

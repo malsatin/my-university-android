@@ -1,4 +1,4 @@
-package com.example.myuniversityclient.data.repository.main
+package com.example.myuniversityclient.data.repository.profile
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

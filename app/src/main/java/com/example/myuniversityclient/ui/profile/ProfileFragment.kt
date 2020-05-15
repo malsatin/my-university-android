@@ -36,7 +36,7 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        var view :View = inflater.inflate(R.layout.fragment_profile, container, false)
+        var view: View = inflater.inflate(R.layout.fragment_profile, container, false)
         profileAdapter = ProfileAdapter(this)
 
         val tabLayout: TabLayout = view.findViewById(R.id.profile_tab)

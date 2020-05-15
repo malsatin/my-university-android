@@ -3,7 +3,7 @@ package com.example.myuniversityclient.domain
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.example.myuniversityclient.data.models.profile.*
-import com.example.myuniversityclient.data.repository.main.ProfileRepository
+import com.example.myuniversityclient.data.repository.profile.ProfileRepository
 import javax.inject.Inject
 
 class ProfileViewModel @Inject constructor(

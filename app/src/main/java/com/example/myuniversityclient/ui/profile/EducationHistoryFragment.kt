@@ -1,6 +1,5 @@
 package com.example.myuniversityclient.ui.profile
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,21 +9,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.myuniversityclient.MainApplication
 import com.example.myuniversityclient.R
 import com.example.myuniversityclient.data.models.profile.EducationHistory
 import kotlinx.android.synthetic.main.fragment_education_history.view.*
 
 class EducationHistoryFragment : Fragment() {
-
     private var educations = ArrayList<EducationHistory.EducationYear>()
     lateinit var educationAdapter: CustomEducationHistoryAdapter
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        // Dagger DI
-        (MainApplication.APPLICATION as MainApplication).appComponent.inject(this)
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,8 +36,8 @@ class EducationHistoryFragment : Fragment() {
             this.layoutManager = layoutManager
             addItemDecoration(DividerItemDecoration(context, layoutManager.orientation))
         }
-        return view    }
-
+        return view
+    }
 
 
     fun subscribeOnViewModel(data: LiveData<Result<EducationHistory?>>) {

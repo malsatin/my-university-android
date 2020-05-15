@@ -1,9 +1,10 @@
-package com.example.myuniversityclient.data.repository.main
+package com.example.myuniversityclient.data.repository.profile
 
 import com.example.myuniversityclient.data.models.profile.*
 import java.util.*
 
-class ProfileServiceMock : ProfileService {
+class ProfileServiceMock :
+    ProfileService {
     override fun getContacts(onResult: (Result<Contacts?>) -> Unit) {
         val mockContacts = Contacts(
             "Russia, Rep. Bashkortostan, Ufa",

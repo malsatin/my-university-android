@@ -3,14 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.profile.ProfileFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".ui.profile.ProfileFragment">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/profile_tab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="12sp"/>
+        android:textSize="12sp" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/pager"

@@ -1,4 +1,4 @@
-package com.example.myuniversityclient.data.repository.main
+package com.example.myuniversityclient.data.repository.profile
 
 import com.example.myuniversityclient.data.models.profile.*
 

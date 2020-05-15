@@ -21,11 +21,11 @@ class ProfileAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
         var fragment = Fragment()
         val bundle = Bundle()
 
-        when(element){
+        when (element) {
             "Links" -> fragment = ContactsFragment()
-                .apply { subscribeOnViewModel(viewModel.getContacts())}
-            "Grades" ->  fragment = GradeBookFragment()
-                .apply { subscribeOnViewModel(viewModel.getGradeBook())}
+                .apply { subscribeOnViewModel(viewModel.getContacts()) }
+            "Grades" -> fragment = GradeBookFragment()
+                .apply { subscribeOnViewModel(viewModel.getGradeBook()) }
             "Info" -> fragment = PersonalInfoFragment()
                 .apply { subscribeOnViewModel(viewModel.getPersonalInfo()) }
             "Docs" -> fragment = PassportsFragment()
