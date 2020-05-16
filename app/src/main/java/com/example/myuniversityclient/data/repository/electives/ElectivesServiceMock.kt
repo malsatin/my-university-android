@@ -10,14 +10,14 @@ import java.time.temporal.ChronoField
  * Temporary [ElectivesService] implementation
  */
 class ElectivesServiceMock : ElectivesService {
-    override fun getElectives(onResponse: (Result<List<Elective>>) -> Unit) {
+    override fun getElectives(onResult: (Result<List<Elective>>) -> Unit) {
         val formatter = DateTimeFormatterBuilder()
             .appendPattern("dd-MM-yyyy")
             .parseDefaulting(ChronoField.NANO_OF_DAY, 0)
             .toFormatter()
             .withZone(ZoneId.systemDefault())
 
-        onResponse(
+        onResult(
             Result.success(
                 listOf(
                     Elective(

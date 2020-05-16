@@ -1,6 +1,6 @@
 package com.example.myuniversityclient.data.repository.http
 
-import android.content.SharedPreferences
+import com.example.myuniversityclient.data.repository.SharedPreferencesWrapper
 import com.example.myuniversityclient.data.models.*
 import com.example.myuniversityclient.data.models.profile.*
 import org.jsoup.Connection
@@ -15,12 +15,14 @@ import javax.inject.Inject
 
 class HttpClientService {
 
+    private val PREFS_TOKEN_KEY = "token"
     private val PORTAL_BASE_URL = "https://my.university.innopolis.ru"
     private val SSO_BASE_URL = "https://sso.university.innopolis.ru:443"
+
     private var cookies: Map<String, String>?
 
     @Inject
-    lateinit var prefs: SharedPreferences
+    lateinit var prefs: SharedPreferencesWrapper
 
     init {
         this.cookies = mapOf(
@@ -33,20 +35,31 @@ class HttpClientService {
     }
 
     fun hasCredentials(): Boolean {
-        // todo
-        return false
+        return prefs.getString(PREFS_TOKEN_KEY) != null && prefs.getString(PREFS_TOKEN_KEY) != ""
+    }
+
+    fun storeCredentials(email: String, password: String) {
+        prefs.set(PREFS_TOKEN_KEY, "$email / $password")
+    }
+
+    fun getCredentials(): Array<String>? {
+        val creds = prefs.getString(PREFS_TOKEN_KEY)?.split(" / ")
+        if (creds == null || creds.size != 2) {
+            return null
+        }
+
+        return arrayOf(creds[0], creds[1])
     }
 
     fun reauth(): AuthMessage {
-        // todo
-        return AuthMessage("", null, false);
+        // todo: authenticate again using credentials from prefs
+        return AuthMessage("", null, false)
     }
 
     fun auth(email: String, password: String): AuthMessage {
         val msg = requestAuth(email, password)
         if (msg.isSuccess) {
-            // todo: store credentials
-
+            storeCredentials(email, password)
             cookies = msg.response!!.cookies()
         }
 
@@ -54,8 +67,7 @@ class HttpClientService {
     }
 
     fun logout() {
-        // todo: clear credentials
-
+        prefs.set(PREFS_TOKEN_KEY, "")
         cookies = null
     }
 
