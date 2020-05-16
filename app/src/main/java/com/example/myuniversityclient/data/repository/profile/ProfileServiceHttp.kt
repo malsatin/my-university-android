@@ -1,113 +1,147 @@
 package com.example.myuniversityclient.data.repository.profile
 
+import android.util.Log
 import com.example.myuniversityclient.data.models.profile.*
+import com.example.myuniversityclient.data.repository.http.HttpClientService
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Observer
+import io.reactivex.rxjava3.disposables.Disposable
+import io.reactivex.rxjava3.schedulers.Schedulers
 import java.util.*
+import javax.inject.Inject
 
-class ProfileServiceHttp :
-    ProfileService {
+class ProfileServiceHttp @Inject constructor(
+    private val httpService: HttpClientService
+) : ProfileService {
+
     override fun getContacts(onResult: (Result<Contacts?>) -> Unit) {
-        val mockContacts = Contacts(
-            "Russia, Rep. Bashkortostan, Ufa",
-            "Russia, Rep. Tatarstan, Innopolis",
-            listOf("b.khabirov@innopolis.ru", "bulAtKhabiroff@gmail.ru"),
-            listOf("@Mock"),
-            listOf("89991543454", "88434321343")
-        )
-        onResult(Result.success(mockContacts))
+        Observable.create<Contacts> { emitter ->
+            try {
+                emitter.onNext(httpService.requestProfileContacts())
+                emitter.onComplete()
+            } catch (e: Throwable) {
+                Log.e("DBG", e.message!!)
+                emitter.onError(e)
+            }
+        }
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : Observer<Contacts> {
+                override fun onSubscribe(d: Disposable) {}
+                override fun onComplete() {}
+
+                override fun onNext(userInfo: Contacts) {
+                    onResult(Result.success(userInfo))
+                }
+
+                override fun onError(e: Throwable) {
+                    onResult(Result.failure(e))
+                }
+            })
     }
 
     override fun getEducationHistory(onResult: (Result<EducationHistory?>) -> Unit) {
-        val mockEducationYear1 = EducationHistory.EducationYear(
-            Date(),
-            "Computer Science",
-            "1",
-            "BS16-01",
-            "2016-2017",
-            "IsStudent"
+        Observable.create<EducationHistory> { emitter ->
+            try {
+                emitter.onNext(httpService.requestProfileEducationHistory())
+                emitter.onComplete()
+            } catch (e: Throwable) {
+                Log.e("DBG", e.message!!)
+                emitter.onError(e)
+            }
+        }
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : Observer<EducationHistory> {
+                override fun onSubscribe(d: Disposable) {}
+                override fun onComplete() {}
 
-        )
-        val mockEducationYear2 = EducationHistory.EducationYear(
-            Date(),
-            "CS",
-            "2",
-            "BS16-01",
-            "2018-2019",
-            "IsStudent"
+                override fun onNext(userInfo: EducationHistory) {
+                    onResult(Result.success(userInfo))
+                }
 
-        )
-        val mockEducationYear3 = EducationHistory.EducationYear(
-            Date(),
-            "CS",
-            "3",
-            "BS16-01",
-            "2019-2020",
-            "IsStudent"
-
-        )
-        val mockEducationYear4 = EducationHistory.EducationYear(
-            Date(),
-            "CS",
-            "4",
-            "BS16-01",
-            "2020-2021",
-            "IsStudent"
-
-        )
-        val mockEducationHistory = EducationHistory(
-            listOf(mockEducationYear1, mockEducationYear2, mockEducationYear3, mockEducationYear4)
-        )
-        onResult(Result.success(mockEducationHistory))
-
+                override fun onError(e: Throwable) {
+                    onResult(Result.failure(e))
+                }
+            })
     }
 
     override fun getGradeBook(onResult: (Result<GradeBook?>) -> Unit) {
-        val mockMark1 = GradeBook.Mark(
-            "Android",
-            "A. Simonenko",
-            "B"
-        )
-        val mockMark2 = GradeBook.Mark(
-            "Software quality and reliability",
-            "A. Sadovukh",
-            "A"
-        )
-        val mockMark3 = GradeBook.Mark(
-            "Operating systems",
-            "G.Succi",
-            "A"
-        )
-        val mockGradeBook = GradeBook(
-            listOf(mockMark1, mockMark2, mockMark3)
-        )
-        onResult(Result.success(mockGradeBook))
+        Observable.create<GradeBook> { emitter ->
+            try {
+                emitter.onNext(httpService.requestProfileGradeBook())
+                emitter.onComplete()
+            } catch (e: Throwable) {
+                Log.e("DBG", e.message!!)
+                emitter.onError(e)
+            }
+        }
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : Observer<GradeBook> {
+                override fun onSubscribe(d: Disposable) {}
+                override fun onComplete() {}
 
+                override fun onNext(userInfo: GradeBook) {
+                    onResult(Result.success(userInfo))
+                }
+
+                override fun onError(e: Throwable) {
+                    onResult(Result.failure(e))
+                }
+            })
     }
 
     override fun getPassportData(onResult: (Result<PassportData?>) -> Unit) {
-        val mockPassportInstance = Passport(
-            "8081",
-            "850890",
-            Date(),
-            "020-033"
-        )
-        val mockPassports = PassportData(
-            listOf(mockPassportInstance)
-        )
-        onResult(Result.success(mockPassports))
+        Observable.create<PassportData> { emitter ->
+            try {
+                emitter.onNext(httpService.requestProfilePassport())
+                emitter.onComplete()
+            } catch (e: Throwable) {
+                Log.e("DBG", e.message!!)
+                emitter.onError(e)
+            }
+        }
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : Observer<PassportData> {
+                override fun onSubscribe(d: Disposable) {}
+                override fun onComplete() {}
 
+                override fun onNext(userInfo: PassportData) {
+                    onResult(Result.success(userInfo))
+                }
+
+                override fun onError(e: Throwable) {
+                    onResult(Result.failure(e))
+                }
+            })
     }
 
     override fun getPersonalInfo(onResult: (Result<PersonalInfo?>) -> Unit) {
-        val mockPersonalInfo = PersonalInfo(
-            "Bulat Khabirov",
-            Date(),
-            "Male",
-            "Russia",
-            "123463464124",
-            "020623434564323",
-            "EA6234321"
-        )
-        onResult(Result.success(mockPersonalInfo))
+        Observable.create<PersonalInfo> { emitter ->
+            try {
+                emitter.onNext(httpService.requestProfilePersonalInfo())
+                emitter.onComplete()
+            } catch (e: Throwable) {
+                Log.e("DBG", e.message!!)
+                emitter.onError(e)
+            }
+        }
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : Observer<PersonalInfo> {
+                override fun onSubscribe(d: Disposable) {}
+                override fun onComplete() {}
 
+                override fun onNext(userInfo: PersonalInfo) {
+                    onResult(Result.success(userInfo))
+                }
+
+                override fun onError(e: Throwable) {
+                    onResult(Result.failure(e))
+                }
+            })
     }
 }

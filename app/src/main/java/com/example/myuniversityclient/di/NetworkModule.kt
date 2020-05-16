@@ -10,7 +10,7 @@ import com.example.myuniversityclient.data.repository.itservices.ITLinksServiceM
 import com.example.myuniversityclient.data.repository.main.MainService
 import com.example.myuniversityclient.data.repository.main.MainServiceHttp
 import com.example.myuniversityclient.data.repository.profile.ProfileService
-import com.example.myuniversityclient.data.repository.profile.ProfileServiceMock
+import com.example.myuniversityclient.data.repository.profile.ProfileServiceHttp
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -32,7 +32,7 @@ class NetworkModule {
 
     @Provides
     fun providesProfileService(): ProfileService {
-        return ProfileServiceMock()
+        return ProfileServiceHttp(httpService)
     }
 
     @Provides

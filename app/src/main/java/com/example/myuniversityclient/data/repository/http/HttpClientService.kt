@@ -5,6 +5,7 @@ import android.util.Log
 import com.example.myuniversityclient.data.models.AuthMessage
 import com.example.myuniversityclient.data.models.InvalidHttpResponse
 import com.example.myuniversityclient.data.models.ShortUserInfo
+import com.example.myuniversityclient.data.models.profile.*
 import com.example.myuniversityclient.data.repository.main.MainService
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
@@ -14,6 +15,7 @@ import io.reactivex.rxjava3.disposables.Disposable
 import org.jsoup.Connection
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
+import java.util.*
 import javax.inject.Inject
 
 
@@ -81,7 +83,7 @@ class HttpClientService {
         if (responseError !== null) {
             val errorText = responseError.text()
             if (errorText !== null && errorText.isNotEmpty()) {
-                return AuthMessage(errorText, response,false)
+                return AuthMessage(errorText, response, false)
             }
         }
 
@@ -111,6 +113,90 @@ class HttpClientService {
             nameEl.text(),
             emailEl.text()
         )
+    }
+
+    fun requestProfileContacts(): Contacts {
+        return Contacts(
+            "Russia, Rep. Bashkortostan, Ufa",
+            "Russia, Rep. Tatarstan, Innopolis",
+            listOf("b.khabirov@innopolis.ru", "bulAtKhabiroff@gmail.ru"),
+            listOf("@Mock"),
+            listOf("89991543454", "88434321343")
+        )
+    }
+
+    fun requestProfileEducationHistory(): EducationHistory {
+        val mockEducationYear1 = EducationHistory.EducationYear(
+            Date(),
+            "Computer Science",
+            "1",
+            "BS16-01",
+            "2016-2017",
+            "IsStudent"
+        )
+        val mockEducationYear2 = EducationHistory.EducationYear(
+            Date(),
+            "CS",
+            "2",
+            "BS16-01",
+            "2018-2019",
+            "IsStudent"
+        )
+        val mockEducationHistory = EducationHistory(
+            listOf(mockEducationYear1, mockEducationYear2)
+        )
+
+        return mockEducationHistory
+    }
+
+    fun requestProfileGradeBook(): GradeBook {
+        val mockMark1 = GradeBook.Mark(
+            "Android",
+            "A. Simonenko",
+            "B"
+        )
+        val mockMark2 = GradeBook.Mark(
+            "Software quality and reliability",
+            "A. Sadovukh",
+            "A"
+        )
+        val mockMark3 = GradeBook.Mark(
+            "Operating systems",
+            "G.Succi",
+            "A"
+        )
+        val mockGradeBook = GradeBook(
+            listOf(mockMark1, mockMark2, mockMark3)
+        )
+
+        return mockGradeBook
+    }
+
+    fun requestProfilePassport(): PassportData {
+        val mockPassportInstance = Passport(
+            "8081",
+            "850890",
+            Date(),
+            "020-033"
+        )
+        val mockPassports = PassportData(
+            listOf(mockPassportInstance)
+        )
+        return mockPassports
+    }
+
+    fun requestProfilePersonalInfo(): PersonalInfo {
+        val mockPersonalInfo = PersonalInfo(
+            "Bulat Khabirov",
+            Date(),
+            "Male",
+            "Russia",
+            "123463464124",
+            "020623434564323",
+            "EA6234321"
+        )
+
+        return mockPersonalInfo
     }
 
     private fun requestPage(path: String): Document {
