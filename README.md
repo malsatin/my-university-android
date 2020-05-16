@@ -7,8 +7,8 @@ This is an attempt to create usable android client for my.university.innopolis.r
 ## Team
 * Bulat Khabirov (Team lead, project backbone)
 * Dilshat Salikhov (Profile page, Authentication activity)
-* Sergey Malyutkin (Scrum master, HTTP services))
-* Valeria Ahmetzhanova (Other
+* Sergey Malyutkin (Task manager, HTTP services))
+* Valeria Ahmetzhanova (Other fragments)
 
 ## Tech stack
 * Target platform - Android 6
