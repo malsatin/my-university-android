@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,7 +21,7 @@ import javax.inject.Inject
  * Activities containing this fragment MUST implement the
  * [ElectivesListFragment.OnListFragmentInteractionListener] interface.
  */
-class ElectivesListFragment : AuthenticatedFragment() {
+class ElectivesListFragment : Fragment(),Redirectable {
 
     private lateinit var binding: FragmentElectivesListBinding
     private val adapter = ElectivesRecyclerViewAdapter()
@@ -57,7 +58,11 @@ class ElectivesListFragment : AuthenticatedFragment() {
     private fun subscribeForViewModel() {
         viewModel.electives.observe(viewLifecycleOwner, Observer { result ->
             result.fold({
-                adapter.updateValues(it)
+                if(it!=null) {
+                    adapter.updateValues(it)
+                }else{
+                    redirectToLogin(requireView(), R.id.nav_login)
+                }
             }, {
                 val toast = Toast.makeText(
                     context,

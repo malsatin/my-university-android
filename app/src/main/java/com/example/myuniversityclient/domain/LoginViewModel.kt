@@ -23,17 +23,17 @@ class LoginViewModel @Inject constructor(): ViewModel() {
         authenticationState.value = AuthenticationState.UNAUTHENTICATED
     }
 
+    //Тут сохранять токен в sharedprefs
     fun authenticate(username: String, password: String) {
         if (passwordIsValidForUsername(username, password)) {
-            println("au")
             this.username = username
             authenticationState.value = AuthenticationState.AUTHENTICATED
         } else {
-            println("Un")
             authenticationState.value = AuthenticationState.INVALID_AUTHENTICATION
         }
     }
 
+    //тут
     private fun passwordIsValidForUsername(username: String, password: String): Boolean {
         return true //TODO
     }

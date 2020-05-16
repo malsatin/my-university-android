@@ -1,8 +1,7 @@
 package com.example.myuniversityclient.domain
 
-import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModel
 import com.example.myuniversityclient.data.models.Elective
 import com.example.myuniversityclient.data.repository.electives.ElectivesRepository
 import com.example.myuniversityclient.ui.models.ElectiveItemModel
@@ -14,13 +13,9 @@ import javax.inject.Singleton
 @Singleton
 class ElectivesListFragmentViewModel @Inject constructor(
     private val repository: ElectivesRepository
-): ViewModel() {
-    val electives: LiveData<Result<List<ElectiveItemModel>>> by lazy {
-        Transformations.map(repository.getElectivesList()) { result ->
-            result.map {
-                it.map(::itemFromElective)
-            }
-        }
+): AuthenticatedViewModel() {
+    val electives: MutableLiveData<Result<List<ElectiveItemModel>>> by lazy {
+        loadElectives()
     }
 
     private val formatter = DateTimeFormatterBuilder()
@@ -28,11 +23,27 @@ class ElectivesListFragmentViewModel @Inject constructor(
         .toFormatter()
         .withZone(ZoneId.systemDefault())
 
+    fun loadElectives(): MutableLiveData<Result<List<ElectiveItemModel>>>{
+        return Transformations.map(repository.getElectivesList()) { result ->
+            result.map {
+                if(it!=null) {
+                    it.map(::itemFromElective)
+                }else{
+                    null
+                }
+            }
+        } as MutableLiveData<Result<List<ElectiveItemModel>>>
+    }
+
     private fun itemFromElective(elective: Elective): ElectiveItemModel {
         return ElectiveItemModel(
             elective.name,
             formatter.format(elective.subscriptionDate),
             elective.type
         )
+    }
+
+    override fun onAuthStateChanged() {
+        electives.postValue(loadElectives().value)
     }
 }

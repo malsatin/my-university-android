@@ -1,6 +1,7 @@
 package com.example.myuniversityclient.domain
 
-import androidx.lifecycle.*
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import com.example.myuniversityclient.data.repository.main.MainRepository
 import com.example.myuniversityclient.ui.models.ShortUserInfoModel
 import javax.inject.Inject
@@ -13,9 +14,13 @@ import javax.inject.Singleton
 @Singleton
 class MainActivityViewModel @Inject constructor(
     private val repository: MainRepository
-): ViewModel() {
-    val shortUserInfo: LiveData<Result<ShortUserInfoModel?>> by lazy {
-        Transformations.map(repository.getShortUserInfo()) { result ->
+): AuthenticatedViewModel() {
+    val shortUserInfo: MutableLiveData<Result<ShortUserInfoModel?>> by lazy {
+        loadShortUserInfo()
+    }
+
+    fun loadShortUserInfo(): MutableLiveData<Result<ShortUserInfoModel?>>{
+        return Transformations.map(repository.getShortUserInfo()) { result ->
             result.map {
                 if (it != null) {
                     ShortUserInfoModel(
@@ -27,6 +32,9 @@ class MainActivityViewModel @Inject constructor(
                     null
                 }
             }
-        }
+        } as MutableLiveData<Result<ShortUserInfoModel?>>
+    }
+    override fun onAuthStateChanged() {
+        shortUserInfo.postValue(loadShortUserInfo().value)
     }
 }

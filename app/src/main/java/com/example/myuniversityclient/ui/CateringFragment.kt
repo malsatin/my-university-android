@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,7 +22,7 @@ import javax.inject.Inject
 /**
  * A fragment displaying a catering history
  */
-class CateringFragment : AuthenticatedFragment(), CateringHistoryAdapter.ServiceClickListener {
+class CateringFragment : Fragment(), CateringHistoryAdapter.ServiceClickListener, Redirectable {
 
     @Inject
     lateinit var viewModel: CateringFragmentViewModel
@@ -68,13 +69,21 @@ class CateringFragment : AuthenticatedFragment(), CateringHistoryAdapter.Service
 
     private fun onHistoryDidUpdate(result: Result<CateringHistoryItemsList?>) {
         result.fold({
-            history.clear()
-            history.addAll(it!!.history)
+            if(it!=null) {
+                history.clear()
+                history.addAll(it.history)
 
-            historyAdapter.notifyDataSetChanged()
+                historyAdapter.notifyDataSetChanged()
 
-            val toast = Toast.makeText(activity?.applicationContext, R.string.success_load_catering_history, Toast.LENGTH_LONG)
-            toast.show()
+                val toast = Toast.makeText(
+                    activity?.applicationContext,
+                    R.string.success_load_catering_history,
+                    Toast.LENGTH_LONG
+                )
+                toast.show()
+            }else{
+                redirectToLogin(requireView(), R.id.nav_login)
+            }
         }, {
             val toast = Toast.makeText(activity?.applicationContext, R.string.error_load_catering_history, Toast.LENGTH_LONG)
             toast.show()

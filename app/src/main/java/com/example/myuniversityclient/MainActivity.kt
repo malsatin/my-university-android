@@ -14,12 +14,14 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.myuniversityclient.databinding.ActivityMainBinding
 import com.example.myuniversityclient.domain.LoginViewModel
 import com.example.myuniversityclient.domain.MainActivityViewModel
+import com.example.myuniversityclient.ui.Redirectable
 import com.example.myuniversityclient.ui.models.ShortUserInfoModel
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.view.*
 import kotlinx.android.synthetic.main.nav_header_main.view.*
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), Redirectable {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
@@ -87,7 +89,8 @@ class MainActivity : AppCompatActivity() {
             } else {
                 // Received success with null,
                 // meaning we have no auth, so re-auth
-                onAuthNeeded()
+                redirectToLogin(nav_view, R.id.nav_login)
+
             }
         }, {
             // received error
@@ -96,9 +99,4 @@ class MainActivity : AppCompatActivity() {
             return // котлин мразь, без этого не компилит
         })
     }
-
-    /**
-     * TODO: Дильшат и Сергей пилят тут отображение логина
-     */
-    private fun onAuthNeeded() { }
 }
