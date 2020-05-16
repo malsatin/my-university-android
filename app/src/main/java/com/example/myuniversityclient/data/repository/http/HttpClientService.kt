@@ -1,6 +1,6 @@
 package com.example.myuniversityclient.data.repository.http
 
-import android.content.SharedPreferences
+import SharedPreferencesWrapper
 import com.example.myuniversityclient.data.models.AuthMessage
 import com.example.myuniversityclient.data.models.InvalidHttpResponse
 import com.example.myuniversityclient.data.models.ShortUserInfo
@@ -14,14 +14,15 @@ import java.util.*
 import javax.inject.Inject
 
 
-class HttpClientService {
+class HttpClientService{
 
     private val PORTAL_BASE_URL = "https://my.university.innopolis.ru"
     private val SSO_BASE_URL = "https://sso.university.innopolis.ru:443"
     private var cookies: Map<String, String>?
+    private val TOKEN_KEY = "token"
 
     @Inject
-    lateinit var prefs: SharedPreferences
+    lateinit var prefs: SharedPreferencesWrapper
 
     init {
         this.cookies = mapOf(
@@ -34,20 +35,18 @@ class HttpClientService {
     }
 
     fun hasCredentials(): Boolean {
-        // todo
-        return false
+        return prefs.getString(TOKEN_KEY)!=null || !prefs.getString(TOKEN_KEY)!!.equals("")
     }
 
     fun reauth(): AuthMessage {
-        // todo
-        return AuthMessage("", null, false);
+        prefs.set(TOKEN_KEY, "")
+        return AuthMessage("", null, false)
     }
 
     fun auth(email: String, password: String): AuthMessage {
         val msg = requestAuth(email, password)
         if (msg.isSuccess) {
-            // todo: store credentials
-
+            prefs.set(TOKEN_KEY, msg.response.toString())
             cookies = msg.response!!.cookies()
         }
 
@@ -55,8 +54,7 @@ class HttpClientService {
     }
 
     fun logout() {
-        // todo: clear credentials
-
+        reauth()
         cookies = null
     }
 

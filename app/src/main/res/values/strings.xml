@@ -17,7 +17,7 @@
     <string name="elective_item_subtitle">%1$s · Subscribed on %2$s</string>
     <string name="error_electives_update">Failed to load Electives list</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
+    <!-- TODO: Remove or com.example.myuniversityclient.data.repository.change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="not_implemented_view">Not implemented in this release</string>
 
