@@ -12,7 +12,7 @@ import javax.inject.Singleton
 @Singleton
 class ITServicesFragmentViewModel @Inject constructor(
     private val repository: ITLinksRepository
-): ViewModel() {
+) : ViewModel() {
     val itServicesList: LiveData<Result<ITServicesList>> by lazy {
         // map to a new live data object
         Transformations.map(repository.getITServicesList()) { result ->

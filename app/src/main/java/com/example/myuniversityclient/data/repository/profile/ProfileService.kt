@@ -1,6 +1,6 @@
 package com.example.myuniversityclient.data.repository.profile
 
-import com.example.myuniversityclient.data.models.profile.*
+import com.example.myuniversityclient.data.models.profile.* // ktlint-disable no-wildcard-imports
 
 /**
  * A DAO for retrieving profile.
@@ -35,5 +35,4 @@ interface ProfileService {
      * @param onResult a callback with a result of the request.
      */
     fun getPersonalInfo(onResult: (Result<PersonalInfo?>) -> Unit)
-
 }

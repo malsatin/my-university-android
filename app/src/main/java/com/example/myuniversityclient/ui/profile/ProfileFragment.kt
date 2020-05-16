@@ -33,7 +33,8 @@ class ProfileFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         var view: View = inflater.inflate(R.layout.fragment_profile, container, false)
@@ -46,7 +47,6 @@ class ProfileFragment : Fragment() {
         viewPager.adapter = profileAdapter
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = profileAdapter.tabs[position]
-
         }.attach()
         return view
     }

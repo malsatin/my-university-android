@@ -18,13 +18,13 @@ import com.example.myuniversityclient.domain.CateringFragmentViewModel
 import kotlinx.android.synthetic.main.fragment_catering.view.*
 import javax.inject.Inject
 
-
 /**
  * A fragment displaying a catering history
  */
 class CateringFragment : Fragment(), CateringHistoryAdapter.ServiceClickListener {
 
-    @Inject lateinit var viewModel: CateringFragmentViewModel
+    @Inject
+    lateinit var viewModel: CateringFragmentViewModel
 
     private var history = ArrayList<CateringHistoryItem>()
     lateinit var historyAdapter: CateringHistoryAdapter
@@ -46,7 +46,8 @@ class CateringFragment : Fragment(), CateringHistoryAdapter.ServiceClickListener
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
@@ -73,10 +74,18 @@ class CateringFragment : Fragment(), CateringHistoryAdapter.ServiceClickListener
 
             historyAdapter.notifyDataSetChanged()
 
-            val toast = Toast.makeText(activity?.applicationContext, R.string.success_load_catering_history, Toast.LENGTH_LONG)
+            val toast = Toast.makeText(
+                activity?.applicationContext,
+                R.string.success_load_catering_history,
+                Toast.LENGTH_LONG
+            )
             toast.show()
         }, {
-            val toast = Toast.makeText(activity?.applicationContext, R.string.error_load_catering_history, Toast.LENGTH_LONG)
+            val toast = Toast.makeText(
+                activity?.applicationContext,
+                R.string.error_load_catering_history,
+                Toast.LENGTH_LONG
+            )
             toast.show()
         })
     }

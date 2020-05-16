@@ -39,7 +39,6 @@ class EducationHistoryFragment : Fragment() {
         return view
     }
 
-
     fun subscribeOnViewModel(data: LiveData<Result<EducationHistory?>>) {
         data.observe(this, Observer(::onEducationHistoryUpdate))
     }
@@ -51,5 +50,4 @@ class EducationHistoryFragment : Fragment() {
             educationAdapter.notifyDataSetChanged()
         }, {})
     }
-
 }

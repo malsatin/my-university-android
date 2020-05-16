@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myuniversityclient.data.models.ITService
 import com.example.myuniversityclient.databinding.TitleSubtitleItemBinding
 
-
 interface ServiceClickListener {
     fun onClick(service: ITService)
 }
@@ -46,5 +45,3 @@ class ITServicesAdapter(private val itemList: List<ITService>) :
         holder.bind()
     }
 }
-
-

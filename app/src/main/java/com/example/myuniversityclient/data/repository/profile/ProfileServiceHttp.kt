@@ -1,7 +1,7 @@
 package com.example.myuniversityclient.data.repository.profile
 
 import android.util.Log
-import com.example.myuniversityclient.data.models.profile.*
+import com.example.myuniversityclient.data.models.profile.* // ktlint-disable no-wildcard-imports
 import com.example.myuniversityclient.data.repository.http.HttpClientService
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable

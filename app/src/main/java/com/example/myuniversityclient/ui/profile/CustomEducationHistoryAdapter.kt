@@ -7,7 +7,6 @@ import com.example.myuniversityclient.R
 import com.example.myuniversityclient.data.models.profile.EducationHistory
 import com.example.myuniversityclient.databinding.ItemEducationYearBinding
 
-
 class CustomEducationHistoryAdapter(
     val educations: List<EducationHistory.EducationYear>
 

@@ -17,7 +17,6 @@ class MainRepository @Inject constructor(
      */
     private var userInfo: MutableLiveData<Result<ShortUserInfo?>>? = null
 
-
     /**
      * Provides observable [LiveData] with requested user info to observers.
      * In case the requested info is unavailable due to expired or nonexistent
@@ -33,7 +32,6 @@ class MainRepository @Inject constructor(
 
         return liveData
     }
-
 
     /**
      * Deletes information about current user.

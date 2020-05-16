@@ -12,13 +12,11 @@ import javax.inject.Singleton
 @Singleton
 class CateringFragmentViewModel @Inject constructor(
     private val repository: CateringRepository
-): ViewModel() {
+) : ViewModel() {
     val cateringHistoryList: LiveData<Result<CateringHistoryItemsList>> by lazy {
         Transformations.map(repository.getCateringHistoryList()) { result ->
             result.map {
-                CateringHistoryListModel(
-                    it.history
-                )
+                CateringHistoryListModel(it.history)
             }
         }
     }

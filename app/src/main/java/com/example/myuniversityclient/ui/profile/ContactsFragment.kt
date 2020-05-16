@@ -15,7 +15,6 @@ import com.example.myuniversityclient.data.models.profile.Contacts
 import com.example.myuniversityclient.utils.ListViewUtils.Companion.justifyListViewHeightBasedOnChildren
 import com.google.android.material.textfield.TextInputLayout
 
-
 class ContactsFragment : Fragment() {
 
     override fun onCreateView(
@@ -44,7 +43,9 @@ class ContactsFragment : Fragment() {
         )
         var emails: ListView? = view?.findViewById(R.id.emails)
         emails?.adapter = adapterEmails
-        emails?.addHeaderView(TextView(context).apply { text = context.getString(R.string.emails_name) })
+        emails?.addHeaderView(TextView(context).apply {
+            text = context.getString(R.string.emails_name)
+        })
         justifyListViewHeightBasedOnChildren(emails!!)
 
         var adapterTelegrams = ArrayAdapter<String>(
@@ -54,9 +55,10 @@ class ContactsFragment : Fragment() {
         )
         var telegram: ListView? = view?.findViewById(R.id.telegrams)
         telegram?.adapter = adapterTelegrams
-        telegram?.addHeaderView(TextView(context).apply { text = context.getString(R.string.telegram_name) })
+        telegram?.addHeaderView(TextView(context).apply {
+            text = context.getString(R.string.telegram_name)
+        })
         justifyListViewHeightBasedOnChildren(telegram!!)
-
 
         var adapterPhones = ArrayAdapter<String>(
             requireContext(),
@@ -65,7 +67,9 @@ class ContactsFragment : Fragment() {
         )
         var phones: ListView? = view?.findViewById(R.id.phones)
         phones?.adapter = adapterPhones
-        phones?.addHeaderView(TextView(context).apply { text = context.getString(R.string.phones_name) })
+        phones?.addHeaderView(TextView(context).apply {
+            text = context.getString(R.string.phones_name)
+        })
         justifyListViewHeightBasedOnChildren(phones!!)
     }
 }

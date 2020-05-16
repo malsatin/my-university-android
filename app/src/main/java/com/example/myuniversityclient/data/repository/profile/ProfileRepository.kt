@@ -2,7 +2,7 @@ package com.example.myuniversityclient.data.repository.profile
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.myuniversityclient.data.models.profile.*
+import com.example.myuniversityclient.data.models.profile.* // ktlint-disable no-wildcard-imports
 import javax.inject.Inject
 
 class ProfileRepository @Inject constructor(private val profileService: ProfileService) {

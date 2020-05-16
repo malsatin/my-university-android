@@ -25,6 +25,7 @@ class ElectivesListFragment : Fragment() {
 
     private lateinit var binding: FragmentElectivesListBinding
     private val adapter = ElectivesRecyclerViewAdapter()
+
     @Inject
     lateinit var viewModel: ElectivesListFragmentViewModel
 
@@ -34,7 +35,8 @@ class ElectivesListFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentElectivesListBinding.inflate(inflater)

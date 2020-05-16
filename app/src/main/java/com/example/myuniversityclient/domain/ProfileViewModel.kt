@@ -2,7 +2,7 @@ package com.example.myuniversityclient.domain
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.example.myuniversityclient.data.models.profile.*
+import com.example.myuniversityclient.data.models.profile.* // ktlint-disable no-wildcard-imports
 import com.example.myuniversityclient.data.repository.profile.ProfileRepository
 import javax.inject.Inject
 
@@ -29,5 +29,4 @@ class ProfileViewModel @Inject constructor(
     fun getPersonalInfo(): LiveData<Result<PersonalInfo?>> {
         return repository.getPersonalInfo()
     }
-
 }

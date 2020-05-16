@@ -20,14 +20,14 @@ import com.example.myuniversityclient.domain.ITServicesFragmentViewModel
 import kotlinx.android.synthetic.main.fragment_it_services.view.*
 import javax.inject.Inject
 
-
 /**
  * A fragment displaying a list of IT services available to the student.
  */
 class ITServicesFragment : Fragment(),
     ServiceClickListener {
 
-    @Inject lateinit var viewModel: ITServicesFragmentViewModel
+    @Inject
+    lateinit var viewModel: ITServicesFragmentViewModel
 
     private var services = ArrayList<ITService>()
     private lateinit var servicesAdapter: ITServicesAdapter
@@ -49,7 +49,8 @@ class ITServicesFragment : Fragment(),
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
@@ -76,7 +77,8 @@ class ITServicesFragment : Fragment(),
 
             servicesAdapter.notifyDataSetChanged()
         }, {
-            val toast = Toast.makeText(context, R.string.error_itservices_update, Toast.LENGTH_SHORT)
+            val toast =
+                Toast.makeText(context, R.string.error_itservices_update, Toast.LENGTH_SHORT)
             toast.show()
         })
     }
