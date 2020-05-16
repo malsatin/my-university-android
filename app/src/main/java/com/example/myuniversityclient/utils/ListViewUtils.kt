@@ -4,7 +4,7 @@ import android.view.ViewGroup
 import android.widget.ListView
 
 class ListViewUtils {
-    companion object{
+    companion object {
         fun justifyListViewHeightBasedOnChildren(listView: ListView) {
             val adapter = listView.adapter ?: return
             val vg: ViewGroup = listView

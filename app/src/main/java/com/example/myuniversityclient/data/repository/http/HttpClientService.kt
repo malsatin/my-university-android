@@ -9,7 +9,7 @@ import org.jsoup.nodes.Document
 import java.time.LocalDate
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
-import java.util.*
+import java.util.* // ktlint-disable no-wildcard-imports
 import javax.inject.Inject
 
 class HttpClientService {

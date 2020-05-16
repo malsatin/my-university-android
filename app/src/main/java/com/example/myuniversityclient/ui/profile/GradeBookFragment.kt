@@ -39,7 +39,6 @@ class GradeBookFragment : Fragment() {
         return view
     }
 
-
     fun subscribeOnViewModel(data: LiveData<Result<GradeBook?>>) {
         data.observe(this, Observer(::onGradeBookUpdate))
     }

@@ -56,5 +56,3 @@ class CateringHistoryAdapter(private val itemList: List<CateringHistoryItem>) :
         holder.bind()
     }
 }
-
-

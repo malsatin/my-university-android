@@ -1,6 +1,6 @@
 package com.example.myuniversityclient.data.repository.profile
 
-import com.example.myuniversityclient.data.models.profile.*  // ktlint-disable no-wildcard-imports
+import com.example.myuniversityclient.data.models.profile.* // ktlint-disable no-wildcard-imports
 import java.time.LocalDate
 
 class ProfileServiceMock : ProfileService {
@@ -24,7 +24,6 @@ class ProfileServiceMock : ProfileService {
             "BS16-01",
             "2016-2017",
             "IsStudent"
-
         )
         val mockEducationYear2 = EducationHistory.EducationYear(
             LocalDate.now(),
@@ -41,7 +40,6 @@ class ProfileServiceMock : ProfileService {
             "BS16-01",
             "2019-2020",
             "IsStudent"
-
         )
         val mockEducationYear4 = EducationHistory.EducationYear(
             LocalDate.now(),
@@ -50,7 +48,6 @@ class ProfileServiceMock : ProfileService {
             "BS16-01",
             "2020-2021",
             "IsStudent"
-
         )
         val mockEducationHistory = EducationHistory(
             listOf(mockEducationYear1, mockEducationYear2, mockEducationYear3, mockEducationYear4)

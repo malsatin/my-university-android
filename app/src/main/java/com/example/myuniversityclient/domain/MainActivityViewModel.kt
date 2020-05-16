@@ -15,7 +15,7 @@ import javax.inject.Singleton
 @Singleton
 class MainActivityViewModel @Inject constructor(
     private val repository: MainRepository
-): ViewModel() {
+) : ViewModel() {
     val shortUserInfo: LiveData<Result<ShortUserInfoModel?>> by lazy {
         Transformations.map(repository.getShortUserInfo()) { result ->
             result.map {

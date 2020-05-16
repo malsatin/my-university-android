@@ -39,5 +39,4 @@ class CustomGradeAdapter(
     override fun onBindViewHolder(holder: CustomGradeAdapter.ViewHolder, position: Int) {
         holder.bind()
     }
-
 }

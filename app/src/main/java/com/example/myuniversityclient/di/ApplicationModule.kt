@@ -13,5 +13,4 @@ class ApplicationModule {
 
     @Provides
     fun provideContext(): Context = MainApplication.APPLICATION
-
 }
