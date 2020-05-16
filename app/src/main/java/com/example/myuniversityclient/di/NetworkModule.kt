@@ -1,12 +1,12 @@
 package com.example.myuniversityclient.di
 
 import com.example.myuniversityclient.data.repository.catering.CateringService
-import com.example.myuniversityclient.data.repository.catering.CateringServiceMock
+import com.example.myuniversityclient.data.repository.catering.CateringServiceHttp
 import com.example.myuniversityclient.data.repository.electives.ElectivesService
-import com.example.myuniversityclient.data.repository.electives.ElectivesServiceMock
+import com.example.myuniversityclient.data.repository.electives.ElectivesServiceHttp
 import com.example.myuniversityclient.data.repository.http.HttpClientService
 import com.example.myuniversityclient.data.repository.itservices.ITLinksService
-import com.example.myuniversityclient.data.repository.itservices.ITLinksServiceMock
+import com.example.myuniversityclient.data.repository.itservices.ITLinksServiceHttp
 import com.example.myuniversityclient.data.repository.main.MainService
 import com.example.myuniversityclient.data.repository.main.MainServiceHttp
 import com.example.myuniversityclient.data.repository.profile.ProfileService
@@ -37,16 +37,16 @@ class NetworkModule {
 
     @Provides
     fun provideCateringService(): CateringService {
-        return CateringServiceMock()
+        return CateringServiceHttp(httpService)
     }
 
     @Provides
     fun provideITLinksService(): ITLinksService {
-        return ITLinksServiceMock()
+        return ITLinksServiceHttp(httpService)
     }
 
     @Provides
     fun provideElectivesService(): ElectivesService {
-        return ElectivesServiceMock()
+        return ElectivesServiceHttp(httpService)
     }
 }

@@ -6,10 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myuniversityclient.R
 import com.example.myuniversityclient.data.models.CateringHistoryItem
 import com.example.myuniversityclient.databinding.CateringHistoryItemBinding
-import java.text.NumberFormat
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
-import java.util.*
 
 class CateringHistoryAdapter(private val itemList: List<CateringHistoryItem>) :
     RecyclerView.Adapter<CateringHistoryAdapter.ViewHolder>() {
@@ -31,9 +29,7 @@ class CateringHistoryAdapter(private val itemList: List<CateringHistoryItem>) :
                 endString
             )
 
-            binding.price.text = NumberFormat
-                .getCurrencyInstance(Locale("ru", "RU"))
-                .format(service.price)
+            binding.price.text = service.price
             binding.items.text = service.included_items.joinToString()
 
             itemView.setOnClickListener {
