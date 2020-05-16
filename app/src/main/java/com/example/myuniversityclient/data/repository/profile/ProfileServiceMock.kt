@@ -1,10 +1,10 @@
 package com.example.myuniversityclient.data.repository.profile
 
 import com.example.myuniversityclient.data.models.profile.*
+import java.time.LocalDate
 import java.util.*
 
-class ProfileServiceMock :
-    ProfileService {
+class ProfileServiceMock : ProfileService {
     override fun getContacts(onResult: (Result<Contacts?>) -> Unit) {
         val mockContacts = Contacts(
             "Russia, Rep. Bashkortostan, Ufa",
@@ -18,7 +18,7 @@ class ProfileServiceMock :
 
     override fun getEducationHistory(onResult: (Result<EducationHistory?>) -> Unit) {
         val mockEducationYear1 = EducationHistory.EducationYear(
-            Date(),
+            LocalDate.now(),
             "Computer Science",
             "1",
             "BS16-01",
@@ -27,7 +27,7 @@ class ProfileServiceMock :
 
         )
         val mockEducationYear2 = EducationHistory.EducationYear(
-            Date(),
+            LocalDate.now(),
             "CS",
             "2",
             "BS16-01",
@@ -36,7 +36,7 @@ class ProfileServiceMock :
 
         )
         val mockEducationYear3 = EducationHistory.EducationYear(
-            Date(),
+            LocalDate.now(),
             "CS",
             "3",
             "BS16-01",
@@ -45,7 +45,7 @@ class ProfileServiceMock :
 
         )
         val mockEducationYear4 = EducationHistory.EducationYear(
-            Date(),
+            LocalDate.now(),
             "CS",
             "4",
             "BS16-01",

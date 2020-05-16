@@ -6,15 +6,11 @@ import com.example.myuniversityclient.data.models.AuthMessage
 import com.example.myuniversityclient.data.models.InvalidHttpResponse
 import com.example.myuniversityclient.data.models.ShortUserInfo
 import com.example.myuniversityclient.data.models.profile.*
-import com.example.myuniversityclient.data.repository.main.MainService
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.core.Observer
-import io.reactivex.rxjava3.schedulers.Schedulers
-import io.reactivex.rxjava3.disposables.Disposable
 import org.jsoup.Connection
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 import javax.inject.Inject
 
@@ -116,37 +112,53 @@ class HttpClientService {
     }
 
     fun requestProfileContacts(): Contacts {
+        val doc = requestPage("$PORTAL_BASE_URL/profile/personal-form/index?tab=contacts")
+
+        val table = doc.getElementsByClass("card-content")[0].getElementsByTag("tbody")[0]
+        val tRows = table.getElementsByTag("tr")
+
+        fun findRowValues(name: String): List<String> {
+            val list = LinkedList<String>()
+            tRows.forEach {
+                val cells = it.getElementsByTag("td")
+                if (cells[0].text().trim() == name) {
+                    list.add(cells[1].text().trim())
+                }
+            }
+            if (list.isEmpty()) {
+                list.add("Not found")
+            }
+
+            return list
+        }
+
         return Contacts(
-            "Russia, Rep. Bashkortostan, Ufa",
-            "Russia, Rep. Tatarstan, Innopolis",
-            listOf("b.khabirov@innopolis.ru", "bulAtKhabiroff@gmail.ru"),
-            listOf("@Mock"),
-            listOf("89991543454", "88434321343")
+            findRowValues("Registration address")[0],
+            findRowValues("Residence address")[0],
+            findRowValues("E-mail"),
+            findRowValues("Telegram"),
+            findRowValues("Phone")
         )
     }
 
     fun requestProfileEducationHistory(): EducationHistory {
-        val mockEducationYear1 = EducationHistory.EducationYear(
-            Date(),
-            "Computer Science",
-            "1",
-            "BS16-01",
-            "2016-2017",
-            "IsStudent"
-        )
-        val mockEducationYear2 = EducationHistory.EducationYear(
-            Date(),
-            "CS",
-            "2",
-            "BS16-01",
-            "2018-2019",
-            "IsStudent"
-        )
-        val mockEducationHistory = EducationHistory(
-            listOf(mockEducationYear1, mockEducationYear2)
-        )
+        val doc = requestPage("$PORTAL_BASE_URL/profile/personal-form/index?tab=education")
 
-        return mockEducationHistory
+        val table = doc.getElementsByClass("card-content")[0].getElementsByTag("tbody")[0]
+        val tRows = table.getElementsByTag("tr")
+
+        return EducationHistory(tRows.map {
+            val cells = it.getElementsByTag("td")
+
+            return@map EducationHistory.EducationYear(
+                LocalDate.parse(cells[0].text(), DateTimeFormatter.ofPattern("dd.MM.yyyy")),
+                cells[1].text(),
+                cells[2].text(),
+                cells[3].text(),
+                cells[4].text(),
+                cells[5].text()
+            )
+        })
     }
 
     fun requestProfileGradeBook(): GradeBook {
