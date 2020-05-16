@@ -2,20 +2,18 @@ package com.example.myuniversityclient.ui
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myuniversityclient.MainApplication
 import com.example.myuniversityclient.R
 import com.example.myuniversityclient.databinding.FragmentElectivesListBinding
 import com.example.myuniversityclient.domain.ElectivesListFragmentViewModel
-
 import javax.inject.Inject
 
 /**
@@ -27,7 +25,8 @@ class ElectivesListFragment : Fragment() {
 
     private lateinit var binding: FragmentElectivesListBinding
     private val adapter = ElectivesRecyclerViewAdapter()
-    @Inject lateinit var viewModel: ElectivesListFragmentViewModel
+    @Inject
+    lateinit var viewModel: ElectivesListFragmentViewModel
 
     override fun onAttach(context: Context) {
         (context.applicationContext as MainApplication).appComponent.inject(this)

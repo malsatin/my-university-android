@@ -1,6 +1,8 @@
 package com.example.myuniversityclient.domain
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Transformations
+import androidx.lifecycle.ViewModel
 import com.example.myuniversityclient.data.repository.main.MainRepository
 import com.example.myuniversityclient.ui.models.ShortUserInfoModel
 import javax.inject.Inject

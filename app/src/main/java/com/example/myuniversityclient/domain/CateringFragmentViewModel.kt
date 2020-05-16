@@ -17,7 +17,7 @@ class CateringFragmentViewModel @Inject constructor(
         Transformations.map(repository.getCateringHistoryList()) { result ->
             result.map {
                 CateringHistoryListModel(
-                    it.history
+                    it!!.history
                 )
             }
         }

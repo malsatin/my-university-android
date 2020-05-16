@@ -11,7 +11,8 @@ interface ServiceClickListener {
     fun onClick(service: ITService)
 }
 
-class ITServicesAdapter(private val itemList: List<ITService>) : RecyclerView.Adapter<ITServicesAdapter.ViewHolder>() {
+class ITServicesAdapter(private val itemList: List<ITService>) :
+    RecyclerView.Adapter<ITServicesAdapter.ViewHolder>() {
     inner class ViewHolder(
         private val binding: TitleSubtitleItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
