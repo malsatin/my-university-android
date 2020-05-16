@@ -1,8 +1,8 @@
 package com.example.myuniversityclient.data.repository.http
 
+import com.example.myuniversityclient.data.models.* // ktlint-disable no-wildcard-imports
+import com.example.myuniversityclient.data.models.profile.* // ktlint-disable no-wildcard-imports
 import com.example.myuniversityclient.data.repository.SharedPreferencesWrapper
-import com.example.myuniversityclient.data.models.*
-import com.example.myuniversityclient.data.models.profile.*
 import org.jsoup.Connection
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
@@ -11,7 +11,6 @@ import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 import java.util.*
 import javax.inject.Inject
-
 
 class HttpClientService {
 

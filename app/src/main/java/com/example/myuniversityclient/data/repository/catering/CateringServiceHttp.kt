@@ -39,5 +39,4 @@ class CateringServiceHttp @Inject constructor(
                 }
             })
     }
-
 }

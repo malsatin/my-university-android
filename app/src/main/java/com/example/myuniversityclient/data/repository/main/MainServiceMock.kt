@@ -17,7 +17,7 @@ class MainServiceMock : MainService {
         onResult(Result.success(mockInfo))
     }
 
-    override fun auth(email: String, password: String, onResult:  (Result<AuthMessage?>) -> Unit) {
+    override fun auth(email: String, password: String, onResult: (Result<AuthMessage?>) -> Unit) {
         onResult(Result.success(null))
     }
 

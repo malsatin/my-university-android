@@ -39,5 +39,4 @@ class ElectivesServiceHttp @Inject constructor(
                 }
             })
     }
-
 }

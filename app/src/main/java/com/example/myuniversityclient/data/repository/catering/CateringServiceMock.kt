@@ -27,7 +27,7 @@ class CateringServiceMock : CateringService {
                     5, "4100 rub"
                 )
             )
-        );
+        )
 
         onResult(Result.success(mockList))
     }

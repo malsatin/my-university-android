@@ -39,5 +39,4 @@ class ITLinksServiceHttp @Inject constructor(
                 }
             })
     }
-
 }

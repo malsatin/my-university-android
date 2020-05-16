@@ -1,8 +1,7 @@
 package com.example.myuniversityclient.data.repository.profile
 
-import com.example.myuniversityclient.data.models.profile.*
+import com.example.myuniversityclient.data.models.profile.*  // ktlint-disable no-wildcard-imports
 import java.time.LocalDate
-import java.util.*
 
 class ProfileServiceMock : ProfileService {
     override fun getContacts(onResult: (Result<Contacts?>) -> Unit) {
@@ -13,6 +12,7 @@ class ProfileServiceMock : ProfileService {
             listOf("@Mock"),
             listOf("89991543454", "88434321343")
         )
+
         onResult(Result.success(mockContacts))
     }
 
@@ -33,7 +33,6 @@ class ProfileServiceMock : ProfileService {
             "BS16-01",
             "2018-2019",
             "IsStudent"
-
         )
         val mockEducationYear3 = EducationHistory.EducationYear(
             LocalDate.now(),
@@ -56,8 +55,8 @@ class ProfileServiceMock : ProfileService {
         val mockEducationHistory = EducationHistory(
             listOf(mockEducationYear1, mockEducationYear2, mockEducationYear3, mockEducationYear4)
         )
-        onResult(Result.success(mockEducationHistory))
 
+        onResult(Result.success(mockEducationHistory))
     }
 
     override fun getGradeBook(onResult: (Result<GradeBook?>) -> Unit) {
@@ -80,8 +79,8 @@ class ProfileServiceMock : ProfileService {
             "16B1420",
             listOf(mockMark1, mockMark2, mockMark3)
         )
-        onResult(Result.success(mockGradeBook))
 
+        onResult(Result.success(mockGradeBook))
     }
 
     override fun getPassportData(onResult: (Result<PassportData?>) -> Unit) {
@@ -94,8 +93,8 @@ class ProfileServiceMock : ProfileService {
         val mockPassports = PassportData(
             listOf(mockPassportInstance)
         )
-        onResult(Result.success(mockPassports))
 
+        onResult(Result.success(mockPassports))
     }
 
     override fun getPersonalInfo(onResult: (Result<PersonalInfo?>) -> Unit) {
@@ -109,7 +108,7 @@ class ProfileServiceMock : ProfileService {
             "020623434564323",
             "EA6234321"
         )
-        onResult(Result.success(mockPersonalInfo))
 
+        onResult(Result.success(mockPersonalInfo))
     }
 }

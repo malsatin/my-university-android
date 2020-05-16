@@ -27,7 +27,7 @@ class ITLinksServiceMock : ITLinksService {
                     "https://moodle.university.innopolis.ru"
                 )
             )
-        );
+        )
 
         onResult(Result.success(mockList))
     }
