@@ -16,7 +16,7 @@ This is an attempt to create usable android client for my.university.innopolis.r
 * Testing - JUnit, Espresso
 * Build - Gradle
 * Code smell - ktlint, detekt
-* Libraries - Glide, Dagger, Jsoup, Material, Navbar,
+* Libraries - Glide, Dagger, RxAndroid, Jsoup, Material, Navbar
 
 ## Tools
 * IDE - Android Studio
