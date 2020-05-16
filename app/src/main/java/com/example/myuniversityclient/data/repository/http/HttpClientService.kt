@@ -279,26 +279,20 @@ class HttpClientService {
     }
 
     fun requestITServices(): ITServicesList {
-        return ITServicesList(
-            listOf(
-                ITService(
-                    "eDisk",
-                    "Shared file storage (SMB, HTTPS, SFTP)",
-                    "https://edisk.university.innopolis.ru"
-                ),
-                ITService(
-                    "IT Support",
-                    "Send request to Innopolis University IT Department",
-                    "mailto:it@innopolis.ru"
-                ),
-                ITService("Mail", "Web access to email", "https://mail.innopolis.ru"),
-                ITService(
-                    "Moodle",
-                    "Curriculum selection portal",
-                    "https://moodle.university.innopolis.ru"
-                )
+        val doc = requestPage("$PORTAL_BASE_URL/profile/it-services")
+
+        val table = doc.getElementsByClass("card-content")[0].getElementsByTag("tbody")[0]
+        val tRows = table.getElementsByTag("tr")
+
+        return ITServicesList(tRows.map {
+            val cells = it.getElementsByTag("td")
+
+            return@map ITService(
+                cells[0].text(),
+                cells[1].text(),
+                cells[2].getElementsByTag("a")[0].attr("href")
             )
-        )
+        })
     }
 
     private fun requestPage(path: String): Document {
