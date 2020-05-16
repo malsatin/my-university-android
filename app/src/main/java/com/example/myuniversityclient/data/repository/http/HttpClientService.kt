@@ -6,13 +6,10 @@ import com.example.myuniversityclient.data.models.profile.*
 import org.jsoup.Connection
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
-import java.math.BigDecimal
 import java.time.Instant
 import java.time.LocalDate
-import java.time.ZoneId
+import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
-import java.time.format.DateTimeFormatterBuilder
-import java.time.temporal.ChronoField
 import java.util.*
 import javax.inject.Inject
 
@@ -229,68 +226,56 @@ class HttpClientService {
     }
 
     fun requestElectivesList(): List<Elective> {
-        val formatter = DateTimeFormatterBuilder()
-            .appendPattern("dd-MM-yyyy")
-            .parseDefaulting(ChronoField.NANO_OF_DAY, 0)
-            .toFormatter()
-            .withZone(ZoneId.systemDefault())
+        val datePattern = DateTimeFormatter.ofPattern("dd.MM.yyyy")
+        val doc = requestPage("$PORTAL_BASE_URL/profile/electives/index")
 
-        return listOf(
-            Elective(
-                formatter.parse("27-07-2017", Instant::from),
-                "Entrepreneurship",
-                "eSports industry: marketing, economy and game design"
-            ),
-            Elective(
-                formatter.parse("15-01-2019", Instant::from),
-                "Technical",
-                "Advanced С++: New Language Concepts, Features and Mechanisms"
-            ),
-            Elective(
-                formatter.parse("11-08-2019", Instant::from),
-                "Technical",
-                "Reverse Engineering"
-            ),
-            Elective(
-                formatter.parse("11-08-2019", Instant::from),
-                "Technical",
-                "Advanced Topics in Software Testing and Quality Management"
-            ),
-            Elective(
-                formatter.parse("09-08-2018", Instant::from),
-                "Technical",
-                "Human-Computer Interaction Design for AI"
-            ),
-            Elective(
-                formatter.parse("17-01-2020", Instant::from),
-                "Technical",
-                "Design Patterns"
-            ),
-            Elective(
-                formatter.parse("17-01-2020", Instant::from),
-                "Technical",
-                "Consensus theory and concurrent programming on a shared memory"
+        val table = doc.getElementsByClass("card-content")[0].getElementsByTag("tbody")[0]
+        val tRows = table.getElementsByTag("tr")
+
+        return tRows.map {
+            val cells = it.getElementsByTag("td")
+
+            val dateText = cells[2].text().replace("Subscribed on ", "")
+
+            return@map Elective(
+                LocalDate.parse(dateText, datePattern).atStartOfDay().toInstant(ZoneOffset.UTC),
+                cells[1].text(),
+                cells[0].text()
             )
-        )
+        }
     }
 
     fun requestCateringHistory(): CateringHistoryItemsList {
-        return CateringHistoryItemsList(
-            listOf(
-                CateringHistoryItem(
-                    LocalDate.parse("2018-08-20"),
-                    LocalDate.parse("2018-12-15"),
-                    listOf("lunch", "breakfast"),
-                    5, BigDecimal.valueOf(3500)
-                ),
-                CateringHistoryItem(
-                    LocalDate.parse("2019-01-15"),
-                    LocalDate.parse("2019-05-31"),
-                    listOf("lunch", "breakfast, dinner"),
-                    5, BigDecimal.valueOf(4100)
-                )
+        val datePattern = DateTimeFormatter.ofPattern("dd.MM.yyyy")
+        val doc = requestPage("$PORTAL_BASE_URL/profile/meal-plans/history")
+
+        val table = doc.getElementsByClass("card-content")[0]
+        val tHead = table.getElementsByTag("thead")[0]
+        val tBody = table.getElementsByTag("tbody")[0]
+        val tRows = tBody.getElementsByTag("tr")
+
+        val labels = tHead.getElementsByTag("th").map { it.text() }
+        val itemsIndexes = intArrayOf(2, 3, 4)
+
+        return CateringHistoryItemsList(tRows.map {
+            val cells = it.getElementsByTag("td")
+
+            val dateRange = cells[0].text()
+            val dateStart = dateRange.split("-")[0].trim()
+            val dateEnd = dateRange.split("-")[1].trim()
+
+            val days = cells[5].text()
+            val price = cells[6].text()
+            val items = itemsIndexes.filter { cells[it].text() == "done" }.map { labels[it] }
+
+            return@map CateringHistoryItem(
+                LocalDate.parse(dateStart, datePattern),
+                LocalDate.parse(dateEnd, datePattern),
+                items,
+                if (days == "-") 0 else days.toInt(),
+                price
             )
-        )
+        })
     }
 
     fun requestITServices(): ITServicesList {
