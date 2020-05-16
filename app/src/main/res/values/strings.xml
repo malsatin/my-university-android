@@ -19,6 +19,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="not_implemented_view">Not implemented in this release</string>
 
     <!--    Catering-->
     <string name="error_load_catering_history">Error fetching catering history</string>

@@ -1,10 +1,11 @@
 package com.example.myuniversityclient.data.models.profile
 
-import java.util.*
+import java.time.LocalDate
 
 data class PersonalInfo(
     val fullName: String,
-    val birthDate: Date,
+    val birthDate: LocalDate,
+    val birthPlace: String,
     val sex: String,
     val citizenship: String,
     val snils: String,

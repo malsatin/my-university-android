@@ -5,18 +5,18 @@ This is an attempt to create usable android client for my.university.innopolis.r
 * Product owner - Aleksandr Simonenko (Instructor)
 
 ## Team
-* Bulat Khabirov
-* Dilshat Salikhov
-* Sergey Malyutkin (Scrum master)
-* Valeria Ahmetzhanova
+* Bulat Khabirov (Team lead, project backbone)
+* Dilshat Salikhov (Profile page, Authentication activity)
+* Sergey Malyutkin (Scrum master, HTTP services))
+* Valeria Ahmetzhanova (Other
 
 ## Tech stack
 * Target platform - Android 6
 * Language - Kotlin 1.3
-* Testing - JUnit, Mockito-kotlin and Kluent
+* Testing - JUnit, Espresso
 * Build - Gradle
 * Code smell - ktlint, detekt
-* Libraries - Glide, Retrofit *(tbd)*
+* Libraries - Glide, Dagger, RxAndroid, Jsoup, Material, Navbar
 
 ## Tools
 * IDE - Android Studio
