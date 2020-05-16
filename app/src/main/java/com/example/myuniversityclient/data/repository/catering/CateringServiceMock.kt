@@ -7,12 +7,10 @@ import com.example.myuniversityclient.data.models.CateringHistoryItemsList
 import java.math.BigDecimal
 import java.time.LocalDate
 
-
 /**
  * Temporary backend substitution.
  */
-class CateringServiceMock :
-    CateringService {
+class CateringServiceMock : CateringService {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun getCateringHistory(onResult: (Result<CateringHistoryItemsList>) -> Unit) {
         val mockList = CateringHistoryItemsList(

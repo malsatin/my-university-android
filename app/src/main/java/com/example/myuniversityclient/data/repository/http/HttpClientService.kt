@@ -1,15 +1,18 @@
 package com.example.myuniversityclient.data.repository.http
 
 import android.content.SharedPreferences
-import com.example.myuniversityclient.data.models.AuthMessage
-import com.example.myuniversityclient.data.models.InvalidHttpResponse
-import com.example.myuniversityclient.data.models.ShortUserInfo
+import com.example.myuniversityclient.data.models.*
 import com.example.myuniversityclient.data.models.profile.*
 import org.jsoup.Connection
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
+import java.math.BigDecimal
+import java.time.Instant
 import java.time.LocalDate
+import java.time.ZoneId
 import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeFormatterBuilder
+import java.time.temporal.ChronoField
 import java.util.*
 import javax.inject.Inject
 
@@ -222,6 +225,94 @@ class HttpClientService {
             inputs[5].attr("value"),
             inputs[6].attr("value"),
             inputs[7].attr("value")
+        )
+    }
+
+    fun requestElectivesList(): List<Elective> {
+        val formatter = DateTimeFormatterBuilder()
+            .appendPattern("dd-MM-yyyy")
+            .parseDefaulting(ChronoField.NANO_OF_DAY, 0)
+            .toFormatter()
+            .withZone(ZoneId.systemDefault())
+
+        return listOf(
+            Elective(
+                formatter.parse("27-07-2017", Instant::from),
+                "Entrepreneurship",
+                "eSports industry: marketing, economy and game design"
+            ),
+            Elective(
+                formatter.parse("15-01-2019", Instant::from),
+                "Technical",
+                "Advanced С++: New Language Concepts, Features and Mechanisms"
+            ),
+            Elective(
+                formatter.parse("11-08-2019", Instant::from),
+                "Technical",
+                "Reverse Engineering"
+            ),
+            Elective(
+                formatter.parse("11-08-2019", Instant::from),
+                "Technical",
+                "Advanced Topics in Software Testing and Quality Management"
+            ),
+            Elective(
+                formatter.parse("09-08-2018", Instant::from),
+                "Technical",
+                "Human-Computer Interaction Design for AI"
+            ),
+            Elective(
+                formatter.parse("17-01-2020", Instant::from),
+                "Technical",
+                "Design Patterns"
+            ),
+            Elective(
+                formatter.parse("17-01-2020", Instant::from),
+                "Technical",
+                "Consensus theory and concurrent programming on a shared memory"
+            )
+        )
+    }
+
+    fun requestCateringHistory(): CateringHistoryItemsList {
+        return CateringHistoryItemsList(
+            listOf(
+                CateringHistoryItem(
+                    LocalDate.parse("2018-08-20"),
+                    LocalDate.parse("2018-12-15"),
+                    listOf("lunch", "breakfast"),
+                    5, BigDecimal.valueOf(3500)
+                ),
+                CateringHistoryItem(
+                    LocalDate.parse("2019-01-15"),
+                    LocalDate.parse("2019-05-31"),
+                    listOf("lunch", "breakfast, dinner"),
+                    5, BigDecimal.valueOf(4100)
+                )
+            )
+        )
+    }
+
+    fun requestITServices(): ITServicesList {
+        return ITServicesList(
+            listOf(
+                ITService(
+                    "eDisk",
+                    "Shared file storage (SMB, HTTPS, SFTP)",
+                    "https://edisk.university.innopolis.ru"
+                ),
+                ITService(
+                    "IT Support",
+                    "Send request to Innopolis University IT Department",
+                    "mailto:it@innopolis.ru"
+                ),
+                ITService("Mail", "Web access to email", "https://mail.innopolis.ru"),
+                ITService(
+                    "Moodle",
+                    "Curriculum selection portal",
+                    "https://moodle.university.innopolis.ru"
+                )
+            )
         )
     }
 
