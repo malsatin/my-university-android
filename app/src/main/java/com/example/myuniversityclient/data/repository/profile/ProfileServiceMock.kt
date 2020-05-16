@@ -88,7 +88,7 @@ class ProfileServiceMock : ProfileService {
         val mockPassportInstance = Passport(
             "8081",
             "850890",
-            Date(),
+            LocalDate.now(),
             "020-033"
         )
         val mockPassports = PassportData(
@@ -101,7 +101,8 @@ class ProfileServiceMock : ProfileService {
     override fun getPersonalInfo(onResult: (Result<PersonalInfo?>) -> Unit) {
         val mockPersonalInfo = PersonalInfo(
             "Bulat Khabirov",
-            Date(),
+            LocalDate.now(),
+            "Kazan",
             "Male",
             "Russia",
             "123463464124",

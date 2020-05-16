@@ -11,6 +11,7 @@ import com.example.myuniversityclient.R
 import com.example.myuniversityclient.data.models.profile.PersonalInfo
 import com.google.android.material.textfield.TextInputLayout
 import java.text.SimpleDateFormat
+import java.time.format.DateTimeFormatter
 
 class PersonalInfoFragment : Fragment() {
 
@@ -36,11 +37,7 @@ class PersonalInfoFragment : Fragment() {
         val fullName: TextInputLayout? = view?.findViewById(R.id.fullName)
         fullName?.editText?.text?.append(result.getOrNull()?.fullName)
         val birthDate: TextInputLayout? = view?.findViewById(R.id.birthDate)
-        birthDate?.editText?.text?.append(
-            SimpleDateFormat
-                .getDateInstance()
-                .format(result.getOrNull()!!.birthDate)
-        )
+        birthDate?.editText?.text?.append(result.getOrNull()!!.birthDate.format(DateTimeFormatter.ISO_DATE))
         val sex: TextInputLayout? = view?.findViewById(R.id.sex)
         sex?.editText?.text?.append(result.getOrNull()?.sex)
         val citizenship: TextInputLayout? = view?.findViewById(R.id.citizenship)

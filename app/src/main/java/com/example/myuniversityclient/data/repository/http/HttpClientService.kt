@@ -141,6 +141,7 @@ class HttpClientService {
     }
 
     fun requestProfileEducationHistory(): EducationHistory {
+        val datePattern = DateTimeFormatter.ofPattern("dd.MM.yyyy")
         val doc = requestPage("$PORTAL_BASE_URL/profile/personal-form/index?tab=education")
 
         val table = doc.getElementsByClass("card-content")[0].getElementsByTag("tbody")[0]
@@ -150,7 +151,7 @@ class HttpClientService {
             val cells = it.getElementsByTag("td")
 
             return@map EducationHistory.EducationYear(
-                LocalDate.parse(cells[0].text(), DateTimeFormatter.ofPattern("dd.MM.yyyy")),
+                LocalDate.parse(cells[0].text(), datePattern),
                 cells[1].text(),
                 cells[2].text(),
                 cells[3].text(),
@@ -187,30 +188,41 @@ class HttpClientService {
     }
 
     fun requestProfilePassport(): PassportData {
-        val mockPassportInstance = Passport(
-            "8081",
-            "850890",
-            Date(),
-            "020-033"
-        )
-        val mockPassports = PassportData(
-            listOf(mockPassportInstance)
-        )
-        return mockPassports
+        val datePattern = DateTimeFormatter.ofPattern("dd.MM.yyyy")
+        val doc = requestPage("$PORTAL_BASE_URL/profile/personal-form/index?tab=passport")
+
+        val table = doc.getElementsByClass("card-content")[0]
+        val tRows = table.getElementsByClass("row")
+
+        return PassportData(tRows.map {
+            val inputs = it.getElementsByTag("input")
+
+            return@map Passport(
+                inputs[0].attr("value"),
+                inputs[1].attr("value"),
+                LocalDate.parse(inputs[2].attr("value"), datePattern),
+                inputs[3].attr("value")
+            )
+        })
     }
 
     fun requestProfilePersonalInfo(): PersonalInfo {
-        val mockPersonalInfo = PersonalInfo(
-            "Bulat Khabirov",
-            Date(),
-            "Male",
-            "Russia",
-            "123463464124",
-            "020623434564323",
-            "EA6234321"
-        )
+        val datePattern = DateTimeFormatter.ofPattern("dd.MM.yyyy")
+        val doc = requestPage("$PORTAL_BASE_URL/profile/personal-form/index?tab=person")
 
-        return mockPersonalInfo
+        val table = doc.getElementsByClass("card-content")[0]
+        val inputs = table.getElementsByTag("input")
+
+        return PersonalInfo(
+            inputs[0].attr("value"),
+            LocalDate.parse(inputs[1].attr("value"), datePattern),
+            inputs[2].attr("value"),
+            inputs[3].attr("value"),
+            inputs[4].attr("value"),
+            inputs[5].attr("value"),
+            inputs[6].attr("value"),
+            inputs[7].attr("value")
+        )
     }
 
     private fun requestPage(path: String): Document {
