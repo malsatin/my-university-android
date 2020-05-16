@@ -49,6 +49,5 @@ class GradeBookFragment : Fragment() {
             grades.addAll(it?.grades!!)
             gradeBookAdapter.notifyDataSetChanged()
         }, {})
-
     }
 }
