@@ -1,5 +1,6 @@
 package com.example.myuniversityclient.data.repository.http
 
+import android.content.SharedPreferences
 import android.util.Log
 import com.example.myuniversityclient.data.models.AuthMessage
 import com.example.myuniversityclient.data.models.InvalidHttpResponse
@@ -13,13 +14,17 @@ import io.reactivex.rxjava3.disposables.Disposable
 import org.jsoup.Connection
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
+import javax.inject.Inject
 
 
-class HttpClientService : MainService {
+class HttpClientService {
 
     private val PORTAL_BASE_URL = "https://my.university.innopolis.ru"
     private val SSO_BASE_URL = "https://sso.university.innopolis.ru:443"
     private var cookies: Map<String, String>?
+
+    @Inject
+    lateinit var prefs: SharedPreferences
 
     init {
         this.cookies = mapOf(
@@ -27,69 +32,38 @@ class HttpClientService : MainService {
         )
     }
 
-    override fun getShortUserInfo(onResult: (Result<ShortUserInfo?>) -> Unit) {
-        Observable.create<ShortUserInfo> { emitter ->
-            try {
-                emitter.onNext(requestUserInfo())
-                emitter.onComplete()
-            } catch (e: Throwable) {
-                Log.e("DBG", e.message)
-                emitter.onError(e)
-            }
-        }
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(object : Observer<ShortUserInfo> {
-                override fun onSubscribe(d: Disposable) {
-                }
-
-                override fun onNext(userInfo: ShortUserInfo) {
-                    onResult(Result.success(userInfo))
-                }
-
-                override fun onError(e: Throwable) {
-                    onResult(Result.failure(e))
-                }
-
-                override fun onComplete() {
-                }
-            })
+    fun isAuthenticated(): Boolean {
+        return cookies !== null
     }
 
-    override fun auth(email: String, password: String, onResult: (Result<AuthMessage?>) -> Unit) {
-        Observable.create<AuthMessage> { emitter ->
-            try {
-                emitter.onNext(requestAuth(email, password))
-                emitter.onComplete()
-            } catch (e: Throwable) {
-                Log.e("DBG", e.message)
-                emitter.onError(e)
-            }
-        }
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(object : Observer<AuthMessage> {
-                override fun onSubscribe(d: Disposable) {
-                }
-
-                override fun onNext(message: AuthMessage) {
-                    onResult(Result.success(message))
-                }
-
-                override fun onError(e: Throwable) {
-                    onResult(Result.failure(e))
-                }
-
-                override fun onComplete() {
-                }
-            })
+    fun hasCredentials(): Boolean {
+        // todo
+        return false
     }
 
-    override fun logout() {
+    fun reauth(): AuthMessage {
+        // todo
+        return AuthMessage("", null, false);
+    }
+
+    fun auth(email: String, password: String): AuthMessage {
+        val msg = requestAuth(email, password)
+        if (msg.isSuccess) {
+            // todo: store credentials
+
+            cookies = msg.response!!.cookies()
+        }
+
+        return msg
+    }
+
+    fun logout() {
+        // todo: clear credentials
+
         cookies = null
     }
 
-    private fun requestAuth(email: String, password: String): AuthMessage {
+    fun requestAuth(email: String, password: String): AuthMessage {
         val doc = Jsoup.connect("$PORTAL_BASE_URL/site/auth?authclient=adfs").get()
         val form = doc.getElementById("loginForm")
         val action = SSO_BASE_URL + form.attr("action")
@@ -107,16 +81,14 @@ class HttpClientService : MainService {
         if (responseError !== null) {
             val errorText = responseError.text()
             if (errorText !== null && errorText.isNotEmpty()) {
-                return AuthMessage(errorText, false)
+                return AuthMessage(errorText, response,false)
             }
         }
 
-        cookies = response.cookies()
-
-        return AuthMessage("Authorized!")
+        return AuthMessage("Authorized!", response, true)
     }
 
-    private fun requestUserInfo(): ShortUserInfo {
+    fun requestUserInfo(): ShortUserInfo {
         val doc = requestPage("$PORTAL_BASE_URL/profile")
 
         val profileBlock = doc.getElementsByClass("card-profile").first()

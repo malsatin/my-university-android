@@ -8,16 +8,26 @@ import com.example.myuniversityclient.data.repository.http.HttpClientService
 import com.example.myuniversityclient.data.repository.itservices.ITLinksService
 import com.example.myuniversityclient.data.repository.itservices.ITLinksServiceMock
 import com.example.myuniversityclient.data.repository.main.MainService
+import com.example.myuniversityclient.data.repository.main.MainServiceHttp
 import com.example.myuniversityclient.data.repository.profile.ProfileService
 import com.example.myuniversityclient.data.repository.profile.ProfileServiceMock
 import dagger.Module
 import dagger.Provides
+import javax.inject.Singleton
 
 @Module
 class NetworkModule {
+    var httpService: HttpClientService = HttpClientService()
+
+    @Provides
+    @Singleton
+    fun provideHttpClientService(): HttpClientService {
+        return httpService
+    }
+
     @Provides
     fun provideMainService(): MainService {
-        return HttpClientService()
+        return MainServiceHttp(httpService)
     }
 
     @Provides
