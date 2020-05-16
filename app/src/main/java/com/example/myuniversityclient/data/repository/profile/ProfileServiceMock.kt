@@ -77,6 +77,7 @@ class ProfileServiceMock : ProfileService {
             "A"
         )
         val mockGradeBook = GradeBook(
+            "16B1420",
             listOf(mockMark1, mockMark2, mockMark3)
         )
         onResult(Result.success(mockGradeBook))

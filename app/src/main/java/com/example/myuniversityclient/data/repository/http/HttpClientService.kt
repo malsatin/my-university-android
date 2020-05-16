@@ -1,7 +1,6 @@
 package com.example.myuniversityclient.data.repository.http
 
 import android.content.SharedPreferences
-import android.util.Log
 import com.example.myuniversityclient.data.models.AuthMessage
 import com.example.myuniversityclient.data.models.InvalidHttpResponse
 import com.example.myuniversityclient.data.models.ShortUserInfo
@@ -162,26 +161,29 @@ class HttpClientService {
     }
 
     fun requestProfileGradeBook(): GradeBook {
-        val mockMark1 = GradeBook.Mark(
-            "Android",
-            "A. Simonenko",
-            "B"
-        )
-        val mockMark2 = GradeBook.Mark(
-            "Software quality and reliability",
-            "A. Sadovukh",
-            "A"
-        )
-        val mockMark3 = GradeBook.Mark(
-            "Operating systems",
-            "G.Succi",
-            "A"
-        )
-        val mockGradeBook = GradeBook(
-            listOf(mockMark1, mockMark2, mockMark3)
-        )
+        val doc = requestPage("$PORTAL_BASE_URL/profile/personal-form/index?tab=validations")
 
-        return mockGradeBook
+        val table = doc.getElementsByClass("card-content")[0]
+        val tHead = table.getElementsByTag("thead")[0]
+        val tBody = table.getElementsByTag("tbody")[0]
+
+        var studentID = tHead.getElementsByTag("h5")[0].text()
+        if (studentID.isNotEmpty()) {
+            studentID = studentID.split(":")[1].trim()
+        }
+
+        val tRows = tBody.getElementsByTag("tr")
+        val marksList = tRows.map {
+            val cells = it.getElementsByTag("td")
+
+            return@map GradeBook.Mark(
+                cells[0].text(),
+                cells[1].text(),
+                cells[2].text()
+            )
+        }
+
+        return GradeBook(studentID, marksList)
     }
 
     fun requestProfilePassport(): PassportData {
