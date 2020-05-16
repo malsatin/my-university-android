@@ -1,17 +1,18 @@
+package com.example.myuniversityclient.data.repository
 
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
-import com.example.myuniversityclient.data.repository.change
 import javax.inject.Inject
 
 private const val SHARED_PREFS_KEY = "my_dictionary"
-
 private const val SECURE_SHARED_PREFS_KEY = "my_secure_dictionary"
 
-class SharedPreferencesWrapper
- @Inject constructor(context: Context, isSecure: Boolean) {
+class SharedPreferencesWrapper @Inject constructor(
+    context: Context,
+    isSecure: Boolean
+) {
 
     private var preferences: SharedPreferences
 
