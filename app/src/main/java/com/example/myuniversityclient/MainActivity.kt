@@ -1,7 +1,7 @@
 package com.example.myuniversityclient
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -21,7 +21,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
-    @Inject lateinit var viewModel: MainActivityViewModel
+    @Inject
+    lateinit var viewModel: MainActivityViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         // Dagger DI
@@ -53,19 +54,21 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations,
         // which is important for burger-menu button appearance (it will otherwise
         // look as a back button)
-        appBarConfiguration = AppBarConfiguration(setOf(
-            R.id.nav_profile,
-            R.id.nav_catering,
-            R.id.nav_reference,
-            R.id.nav_electives,
-            R.id.nav_it_services
-        ), binding.drawerLayout)
+        appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.nav_profile,
+                R.id.nav_catering,
+                R.id.nav_reference,
+                R.id.nav_electives,
+                R.id.nav_it_services
+            ), binding.drawerLayout
+        )
         setupActionBarWithNavController(navController, appBarConfiguration)
         binding.navView.setupWithNavController(navController)
     }
 
     private fun subscribeToViewModel() {
-        viewModel.getShortUserInfo().observe(this, Observer(::onUserInfoDidUpdate))
+        viewModel.shortUserInfo.observe(this, Observer(::onUserInfoDidUpdate))
     }
 
     private fun onUserInfoDidUpdate(result: Result<ShortUserInfoModel?>) {
@@ -97,5 +100,5 @@ class MainActivity : AppCompatActivity() {
     /**
      * TODO: Дильшат и Сергей пилят тут отображение логина
      */
-    private fun onAuthNeeded() { }
+    private fun onAuthNeeded() {}
 }

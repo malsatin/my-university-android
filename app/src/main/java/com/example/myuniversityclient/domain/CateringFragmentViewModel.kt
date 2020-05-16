@@ -7,24 +7,19 @@ import com.example.myuniversityclient.data.models.CateringHistoryItemsList
 import com.example.myuniversityclient.data.repository.catering.CateringRepository
 import com.example.myuniversityclient.ui.models.CateringHistoryListModel
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class CateringFragmentViewModel @Inject constructor(
     private val repository: CateringRepository
 ): ViewModel() {
-
-    fun getCateringHistoryList(): LiveData<Result<CateringHistoryItemsList?>> {
-        // map to a new live data object
-        return Transformations.map(repository.getCateringHistoryList()) { result ->
+    val cateringHistoryList: LiveData<Result<CateringHistoryItemsList>> by lazy {
+        Transformations.map(repository.getCateringHistoryList()) { result ->
             result.map {
-                if (it != null) {
-                    CateringHistoryListModel(
-                        it.history
-                    )
-                } else {
-                    null
-                }
+                CateringHistoryListModel(
+                    it.history
+                )
             }
         }
     }
-
 }

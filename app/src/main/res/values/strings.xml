@@ -19,6 +19,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="not_implemented_view">Not implemented in this release</string>
 
     <!--    Catering-->
     <string name="error_load_catering_history">Error fetching catering history</string>
@@ -28,4 +29,15 @@
     <!--    IT Services-->
     <string name="success_itservices_update">Updated IT services list</string>
     <string name="error_itservices_update">Failed to load IT services list</string>
+
+    <!--    Profile-->
+    <string name="passport">Passport</string>
+    <string name="passport_data_format">Series: %s Number: %s</string>
+    <string name="auth_code_format">Passport</string>
+    <string name="course_format">"Course: %s"</string>
+    <string name="emails_name">Emails</string>
+    <string name="telegram_name">Telegram</string>
+    <string name="phones_name">Phones</string>
+
+
 </resources>

@@ -1,14 +1,16 @@
 package com.example.myuniversityclient.ui
 
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.example.myuniversityclient.R
 import com.example.myuniversityclient.databinding.TitleSubtitleItemBinding
 import com.example.myuniversityclient.ui.models.ElectiveItemModel
 
-class ElectivesRecyclerViewAdapter() : RecyclerView.Adapter<ElectivesRecyclerViewAdapter.ViewHolder>() {
-    inner class ViewHolder(private val binding: TitleSubtitleItemBinding) : RecyclerView.ViewHolder(binding.root) {
+class ElectivesRecyclerViewAdapter() :
+    RecyclerView.Adapter<ElectivesRecyclerViewAdapter.ViewHolder>() {
+    inner class ViewHolder(private val binding: TitleSubtitleItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ElectiveItemModel) {
             binding.title.text = item.title
             binding.subtitle.text = itemView.resources

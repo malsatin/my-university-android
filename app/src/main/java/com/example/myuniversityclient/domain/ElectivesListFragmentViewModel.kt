@@ -9,10 +9,12 @@ import com.example.myuniversityclient.ui.models.ElectiveItemModel
 import java.time.ZoneId
 import java.time.format.DateTimeFormatterBuilder
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class ElectivesListFragmentViewModel @Inject constructor(
     private val repository: ElectivesRepository
-): ViewModel() {
+) : ViewModel() {
     val electives: LiveData<Result<List<ElectiveItemModel>>> by lazy {
         Transformations.map(repository.getElectivesList()) { result ->
             result.map {
